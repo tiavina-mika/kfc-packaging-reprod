@@ -21,6 +21,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
 ) => {
   return {
     ...packagingExecution,
+    expectedPackagingNumber: packagingExecution.expectedPackagingNumber || 0,
     packagings: packagingExecution.packagings.map((packaging: Record<string, any>) => ({
       ...packaging,
       forecastNumber: packaging.forecastNumber || 0
