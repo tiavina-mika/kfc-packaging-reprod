@@ -18,7 +18,7 @@ import { formatPackagingExecutionWeightsInitialValues } from "../../utils/utils"
 const sx = {
     dialog: {
         '& .MuiDialog-paper': {
-            width: 700,
+            minWidth: 700,
             padding: '32px 24px',
             gap: '40px'
         },
