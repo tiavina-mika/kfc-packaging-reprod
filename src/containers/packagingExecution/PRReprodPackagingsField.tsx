@@ -23,6 +23,11 @@ const styles = {
   }
 }
 
+const getOrderedPackagings = (packagings: Record<string, any>[] = []) => {
+  const order = ["CAPPED", "REUSABLE", "DISPOSABLE"];
+  return packagings.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
+}
+
 type Props = {
   packagings?: Record<string, any>[]
   expectedPackagingNumber?: number
@@ -59,12 +64,12 @@ const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0,
         <TableBody>
           <TableRow>
             <PETableCell_V2 sx={ styles.borders.left }>
-              Théorique
+              Prévisionnelle/ Théorique
             </PETableCell_V2>
-              {packagings.map((currentPackaging: Record<string, any>, index: number) => (
+              {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
                   <PETableCell_V2>
-                    {currentPackaging.theoreticalNumber || "-"}
+                    {currentPackaging.forecastNumber} / {currentPackaging.theoreticalNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
               ))}
@@ -76,7 +81,7 @@ const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0,
             <PETableCell_V2 sx={styles.borders.bottomLeft}>
               Prévisionnelle
             </PETableCell_V2>
-              {packagings.map((currentPackaging: Record<string, any>, index: number) => (
+              {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
                   <PETableCell_V2>
                     {currentPackaging.forecastNumber || "-"}
