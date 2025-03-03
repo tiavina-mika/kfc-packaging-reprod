@@ -4,7 +4,6 @@ import {
     Button,
     Dialog,
     DialogContent,
-    DialogContentText,
     DialogActions,
     Box,
     FormHelperText,
@@ -14,6 +13,7 @@ import {
 } from "@mui/material"
 import PRReprodPackagingsField from "./PRReprodPackagingsField"
 import { formatPackagingExecutionWeightsInitialValues } from "../../utils/utils"
+import PEReprodSectionsField from "./PEReprodSectionsField"
 
 const sx = {
     dialog: {
@@ -96,7 +96,7 @@ const PEReprodDialogForm = ({
                         // validationSchema={schema}
                         onSubmit={_handleSubmit}
                     >
-                        {({ errors, values, setFieldValue }) => {
+                        {({ errors, values, setFieldValue, setFieldTouched, touched }) => {
                             return (
                                 <Form>
                                     <Stack spacing={4}>
@@ -110,6 +110,16 @@ const PEReprodDialogForm = ({
                                             {errors?.packagings && typeof errors.packagings === 'string' && (
                                                 <FormHelperText error>{errors.packagings}</FormHelperText>
                                             )}
+                                        </Stack>
+                                        <Stack spacing={1}>
+                                            <PEReprodSectionsField
+                                                sections={values.sections}
+                                                packagingForecastNumber={values.packagingForecastNumber}
+                                                touchedSections={touched.sections}
+                                                setFieldValue={setFieldValue}
+                                                setFieldTouched={setFieldTouched}
+                                                errors={errors}
+                                            />
                                         </Stack>
                                     </Stack>
                                 </Form>
