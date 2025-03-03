@@ -1,286 +1,300 @@
-export const packagingExecutions = [
-  {
-    uniqueCode: 'RCP1',
-    recipeName: "Patate douce",
-    recipe: {
-      objectId: 'recipe1',
-      uniqueCode: 'RCP1',
-      name: "Patate douce",
-      sections: [
-        {
-          objectId: 'section11',
-          name: 'Section 11',
-        },
-        {
-          objectId: 'section12',
-          name: 'Section 12',
-        }
-      ]
-    },
-    sections: [
+export const packagingExecution = {
+  "productionItems": [
       {
-        section: {
-          objectId: 'section11',
-          name: 'Section 11',
-        },
-        sectionName: 'Section 11',
+          "__type": "Pointer",
+          "className": "ProductionItem",
+          "objectId": "947XiojXTh"
       },
       {
-        section: {
-          objectId: 'section12',
-          name: 'Section 12',
-        },
-        sectionName: 'Section 12',
-        counterWeighing: {
-          weight: 13,
-          reason: 'broken'
-        }
-      }
-    ]
-  },
-  {
-    uniqueCode: 'RCP2',
-    recipeName: "Pizza Margherita",
-    recipe: {
-      objectId: 'recipe2',
-      uniqueCode: 'RCP2',
-      name: "Pizza Margherita",
-      sections: [
-        {
-          objectId: 'section21',
-          name: 'Section 21',
-        },
-        {
-          objectId: 'section22',
-          name: 'Section 22',
-        }
-      ]
-    },
-    sections: [
-      {
-        section: {
-          objectId: 'section21',
-          name: 'Section 21',
-        },
-        sectionName: 'Section 21',
+          "__type": "Pointer",
+          "className": "ProductionItem",
+          "objectId": "PgUUxN5OXj"
       },
       {
-        section: {
-          objectId: 'section22',
-          name: 'Section 22',
-        },
-        sectionName: 'Section 22',
+          "__type": "Pointer",
+          "className": "ProductionItem",
+          "objectId": "zeLaBjUGog"
       }
-    ]
-  },
-  {
-    uniqueCode: 'RCP3',
-    recipeName: "Poulet rôti",
-    recipe: {
-      objectId: 'recipe3',
-      uniqueCode: 'RCP3',
-      name: "Poulet rôti",
-      sections: [
-        {
-          objectId: 'section31',
-          name: 'Section 31',
-        },
-        {
-          objectId: 'section32',
-          name: 'Section 32',
-        }
-      ]
-    },
-    sections: [
+  ],
+  "sections": [
       {
-        section: {
-          objectId: 'section31',
-          name: 'Section 31',
-        },
-        sectionName: 'Section 31',
+          "section": {
+              "productionSteps": [
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ProductionStep",
+                          "objectId": "xqpxCkYPRL"
+                      },
+                      "reusable": false
+                  },
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ProductionStep",
+                          "objectId": "oDkPnVlc9B"
+                      },
+                      "reusable": false
+                  },
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ProductionStep",
+                          "objectId": "CBu7G9ZX9u"
+                      },
+                      "reusable": false
+                  },
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ReusableProductionStep",
+                          "objectId": "AmWQkQWvgX"
+                      },
+                      "reusable": true,
+                      "coeff": 0.1406469760900141,
+                      "grossWeight": 0.2705831440008656,
+                      "cost": 5.528399870172023,
+                      "netWeight": 0.1
+                  },
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ProductionStep",
+                          "objectId": "7WbinexeSf"
+                      },
+                      "reusable": false
+                  }
+              ],
+              "steps": [
+                  {
+                      "name": "",
+                      "description": "ffff",
+                      "ingredients": [
+                          {
+                              "index": "98266e1e-34c3-4b2c-a40e-0a9639de31e0",
+                              "grossWeight": 0.1,
+                              "cookingMode": {
+                                  "__type": "Pointer",
+                                  "className": "CookingMode",
+                                  "objectId": "DInHvLSktg"
+                              },
+                              "supplierItem": {
+                                  "__type": "Pointer",
+                                  "className": "SupplierItems",
+                                  "objectId": "GhBN8voIP8"
+                              },
+                              "complexity": 3,
+                              "transformRate": 100,
+                              "netWeight": 0.1
+                          }
+                      ],
+                      "grossWeight": 0
+                  }
+              ],
+              "name": "Poireaux / Tofu",
+              "reusable": false,
+              "parentId": null,
+              "parentPercent": 0,
+              "createdAt": "2023-11-29T12:14:45.715Z",
+              "updatedAt": "2025-02-11T21:06:11.463Z",
+              "grossWeight": 0.7490499936069557,
+              "cost": 6.891733203505356,
+              "netWeight": 0.23944374120956402,
+              "realCost": 6.891733203505356,
+              "objectId": "9GUUVtGagC",
+              "__type": "Object",
+              "className": "Section"
+          },
+          "sectionName": "Poireaux / Tofu",
+          "cost": 11.847999999999999,
+          "productionStepExecution": {
+              "__type": "Pointer",
+              "className": "ProductionStepExecutions",
+              "objectId": "qAGWXzaxvj"
+          },
+          "totalProductionWeight": 184,
+          "realWeight": 0.3865546218487395,
+          "forecastWaste": 0.004000000000019099,
+          "recipeSectionWeight": 0.3911225,
+          "proposedWeight": 0.3865546218487395,
+          "packagingForecastNumber": null
       },
       {
-        section: {
-          objectId: 'section32',
-          name: 'Section 32',
-        },
-        sectionName: 'Section 32',
+          "section": {
+              "productionSteps": [
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ProductionStep",
+                          "objectId": "uBM7KF2Qz2"
+                      },
+                      "reusable": false
+                  },
+                  {
+                      "step": {
+                          "__type": "Pointer",
+                          "className": "ProductionStep",
+                          "objectId": "FqscRPK1pQ"
+                      },
+                      "reusable": false
+                  }
+              ],
+              "steps": [
+                  {
+                      "name": "",
+                      "description": "",
+                      "ingredients": [
+                          {
+                              "index": "075f77a0-1790-46a1-bd39-fd4378537ac4",
+                              "grossWeight": 0,
+                              "complexity": 0
+                          }
+                      ],
+                      "grossWeight": 0
+                  }
+              ],
+              "name": "Boulettes ",
+              "reusable": false,
+              "parentId": null,
+              "parentPercent": 0,
+              "createdAt": "2024-01-29T13:47:07.444Z",
+              "updatedAt": "2025-02-11T21:06:11.497Z",
+              "grossWeight": 0.512,
+              "cost": 12.288,
+              "netWeight": 0.128,
+              "objectId": "E82HNQHRSs",
+              "__type": "Object",
+              "className": "Section"
+          },
+          "sectionName": "Boulettes ",
+          "recipeSectionWeight": 0.15,
+          "cost": 2.5,
+          "productionStepExecution": {
+              "__type": "Pointer",
+              "className": "ProductionStepExecutions",
+              "objectId": "Cf8wZa398t"
+          },
+          "totalProductionWeight": 155,
+          "realWeight": 0.155,
+          "forecastWaste": 1.670000000000016,
+          "proposedWeight": 0.155,
+          "packagingForecastNumber": null
       }
-    ]
-  },
-  {
-    uniqueCode: 'RCP4',
-    recipeName: "Pâtes carbonara",
-    recipe: {
-      objectId: 'recipe4',
-      uniqueCode: 'RCP4',
-      name: "Pâtes carbonara",
-      sections: [
-        {
-          objectId: 'section41',
-          name: 'Section 41',
-        },
-        {
-          objectId: 'section42',
-          name: 'Section 42',
-        }
-      ]
-    },
-    sections: [
+  ],
+  "packagings": [
       {
-        section: {
-          objectId: 'section41',
-          name: 'Section 41',
-        },
-        sectionName: 'Section 41',
+          "packaging": {
+              "__type": "Pointer",
+              "className": "Packaging",
+              "objectId": "EVwI4Qk0pG"
+          },
+          "type": "DISPOSABLE",
+          "packagingName": "Barquette Kraft Std",
+          "subPackagings": [
+              {
+                  "subPackaging": {
+                      "__type": "Pointer",
+                      "className": "Packaging",
+                      "objectId": "eFzB4nPpXo"
+                  },
+                  "subPackagingName": "Couv. Bq Kraft Std",
+                  "type": "DISPOSABLE",
+                  "brand": "FOODCHERI"
+              }
+          ],
+          "packagingImage": "kfc/uatyrczw5eg2pdvyjaea",
+          "instructions": "Spécifique FC",
+          "theoreticalNumber": 429,
+          "brands": [
+              {
+                  "brand": "FOODCHERI",
+                  "theoreticalNumber": 429
+              }
+          ],
+          "forecastNumber": 0,
+          "startTime": 1709635439051,
+          "realNumber": 423,
+          "endTime": 1709635556788
       },
       {
-        section: {
-          objectId: 'section42',
-          name: 'Section 42',
-        },
-        sectionName: 'Section 42',
-      }
-    ]
-  },
-  {
-    uniqueCode: 'RCP5',
-    recipeName: "Salade César",
-    recipe: {
-      objectId: 'recipe5',
-      uniqueCode: 'RCP5',
-      name: "Salade César",
-      sections: [
-        {
-          objectId: 'section51',
-          name: 'Section 51',
-        },
-        {
-          objectId: 'section52',
-          name: 'Section 52',
-        }
-      ]
-    },
-    sections: [
-      {
-        section: {
-          objectId: 'section51',
-          name: 'Section 51',
-        },
-        sectionName: 'Section 51',
+          "packaging": {
+              "__type": "Pointer",
+              "className": "Packaging",
+              "objectId": "LPC4LDmEhU"
+          },
+          "type": "REUSABLE",
+          "packagingName": "MEPAL350",
+          "subPackagings": [
+              {
+                  "subPackaging": {
+                      "__type": "Pointer",
+                      "className": "Packaging",
+                      "objectId": "poSFwAiN0O"
+                  },
+                  "subPackagingName": "Couvercle Mepal 350",
+                  "type": "REUSABLE",
+                  "brand": "FOODCHERI"
+              }
+          ],
+          "packagingImage": "kfc/uatyrczw5eg2pdvyjaea",
+          "instructions": "Spécifique FC",
+          "theoreticalNumber": 371,
+          "brands": [
+              {
+                  "brand": "FOODCHERI",
+                  "theoreticalNumber": 371
+              }
+          ],
+          "forecastNumber": 0,
+          "startTime": 1709635556788,
+          "realNumber": 367,
+          "endTime": 1709635571688
       },
       {
-        section: {
-          objectId: 'section52',
-          name: 'Section 52',
-        },
-        sectionName: 'Section 52',
+          "packaging": {
+              "__type": "Pointer",
+              "className": "Packaging",
+              "objectId": "626tkiuL7m"
+          },
+          "type": "CAPPED",
+          "packagingName": "Barquette CPET SZ Test",
+          "subPackagings": [
+              {
+                  "subPackaging": {
+                      "__type": "Pointer",
+                      "className": "Packaging",
+                      "objectId": "03KiJCDLVm"
+                  },
+                  "subPackagingName": "FOURREAU SEAZON",
+                  "type": "CAPPED",
+                  "brand": "SEAZON"
+              }
+          ],
+          "packagingImage": "kfc/lyiunn3b3vpgr66czkcx",
+          "instructions": "Instructions standards",
+          "theoreticalNumber": 200,
+          "brands": [
+              {
+                  "brand": "SEAZON",
+                  "theoreticalNumber": 200
+              }
+          ],
+          "forecastNumber": 0,
+          "startTime": 1709635571688,
+          "realNumber": 199,
+          "endTime": 1709635584611
       }
-    ]
-  },
-  {
-    uniqueCode: 'RCP6',
-    recipeName: "Ratatouille",
-    recipe: {
-      objectId: 'recipe6',
-      uniqueCode: 'RCP6',
-      name: "Ratatouille",
-      sections: [
-        {
-          objectId: 'section61',
-          name: 'Section 61',
-        },
-        {
-          objectId: 'section62',
-          name: 'Section 62',
-        }
-      ]
-    },
-    sections: [
-      {
-        section: {
-          objectId: 'section61',
-          name: 'Section 61',
-        },
-        sectionName: 'Section 61',
-      },
-      {
-        section: {
-          objectId: 'section62',
-          name: 'Section 62',
-        },
-        sectionName: 'Section 62',
-      }
-    ]
-  },
-  {
-    uniqueCode: 'RCP7',
-    recipeName: "Poulet curry",
-    recipe: {
-      objectId: 'recipe7',
-      uniqueCode: 'RCP7',
-      name: "Poulet curry",
-      sections: [
-        {
-          objectId: 'section71',
-          name: 'Section 71',
-        },
-        {
-          objectId: 'section72',
-          name: 'Section 72',
-        }
-      ]
-    },
-    sections: [
-      {
-        section: {
-          objectId: 'section71',
-          name: 'Section 71',
-        },
-        sectionName: 'Section 71',
-      },
-      {
-        section: {
-          objectId: 'section72',
-          name: 'Section 72',
-        },
-        sectionName: 'Section 72',
-      }
-    ]
-  },
-  {
-    uniqueCode: 'RCP8',
-    recipeName: "Tarte aux pommes",
-    recipe: {
-      objectId: 'recipe8',
-      uniqueCode: 'RCP8',
-      name: "Tarte aux pommes",
-      sections: [
-        {
-          objectId: 'section81',
-          name: 'Section 81',
-        },
-        {
-          objectId: 'section82',
-          name: 'Section 82',
-        }
-      ]
-    },
-    sections: [
-      {
-        section: {
-          objectId: 'section81',
-          name: 'Section 81',
-        },
-        sectionName: 'Section 81',
-      },
-      {
-        section: {
-          objectId: 'section82',
-          name: 'Section 82',
-        },
-        sectionName: 'Section 82',
-      }
-    ]
-  },
-]
+  ],
+  "recipe": {},
+  "recipeName": "Création PSE - Recette A",
+  "uniqueCode": "F100",
+  "productionDate": 1709683200000,
+  "packagingDate": 1709769600000,
+  "status": "WEIGHT_TO_VALIDATE",
+  "createdAt": "2024-02-21T11:25:17.601Z",
+  "updatedAt": "2024-03-05T10:46:24.617Z",
+  "expectedPackagingNumber": 1000,
+  "startTime": 1709635439050,
+  "objectId": "R5ZMNnxUmE",
+  "packagingForecastNumber": 0
+}
