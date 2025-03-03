@@ -296,7 +296,8 @@ export const packagingExecution = {
   "expectedPackagingNumber": 1000,
   "startTime": 1709635439050,
   "objectId": "R5ZMNnxUmE",
-  "packagingForecastNumber": 0
+  "packagingForecastNumber": 0,
+  "realNumber": 989,
 }
 
 export const proposedWeightsBySections = {
