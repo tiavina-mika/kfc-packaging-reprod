@@ -9,6 +9,7 @@ import {
     Box,
     FormHelperText,
     Stack,
+    DialogTitle,
 } from "@mui/material"
 
 const sx = {
@@ -75,6 +76,9 @@ const PEReprodDialogForm = ({
 
     return (
         <Dialog open={open} onClose={onClose} scroll="body" sx={sx.dialog}>
+            <DialogTitle>
+                {packagingExecution?.uniqueCode} - {packagingExecution?.recipeName}
+            </DialogTitle>
             <DialogContent sx={sx.dialogContent}>
                 <DialogContentText>
                     Choisissez la section sur laquelle vous devez faire une contre-pesée.
