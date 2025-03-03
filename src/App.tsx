@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
-import PEReprodPackagingsDialogForm from './containers/PEReprodDialogForm';
-import { packagingExecution } from './utils/data';
+import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm';
+import { packagingExecution, proposedWeightsBySections } from './utils/data';
 
 const App = () => {
   const [isOpenPackagingsDialog, setIsOpenPackagingsDialog] = useState(true)
@@ -42,8 +42,8 @@ const App = () => {
         open={isOpenPackagingsDialog}
         onClose={toggleOpenRecipeDialog}
         onSubmit={handleSubmitReprod}
+        proposedWeightsBySections={proposedWeightsBySections}
       />
-
     </Box>
   );
 }
