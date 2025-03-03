@@ -23,7 +23,7 @@ export const PETableHeaderCell = styled(TableCell, {
 
 export const PETableHeaderCell_V2 = styled(TableCell, {
   shouldForwardProp: (prop) => prop !== "align" 
-})(({ align }) => ({
+})(({ align }: any) => ({
   fontSize: "16px",
   lineHeight: "24px",
   padding: "16px",
@@ -78,7 +78,7 @@ export const PETotalTableCell = styled(TableCell, {
 
 export const PETotalTableCell_V2 = styled(TableCell, {
   shouldForwardProp: (prop) => prop !== "align"
-})(({ align }) => ({
+})(({ align }: any) => ({
   padding: "16px",
   fontSize: "16px",
   lineHeight:"24px",
