@@ -88,7 +88,6 @@ const PEReprodSectionField = ({
 						/>
 						<span style={{color:COLORS.DRAFT_GREY}}> g</span>
 					</Stack>
-				) 
 			{/* <FormikErrorMessage name={`sections[${index}].realWeight`} /> */}
 			{(errors as any)?.sections?.[index]?.realWeight && (
 				<FormHelperText error>
