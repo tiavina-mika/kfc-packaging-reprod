@@ -1,41 +1,16 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import RecipeDialogForm from './containers/RecipeDialogForm';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
-import SectionsSelectionDialogForm from './containers/SectionsSelectionDialogForm';
-import Recipes from './containers/Recipes';
-import PreparedPackagingDialogForm from './containers/PreparedPackagingDialogForm';
+import PEReprodPackagingsDialogForm from './containers/PEReprodDialogForm';
+import { packagingExecution } from './utils/data';
 
 const App = () => {
-  const [isOpenRecipeDialog, setIsOpenRecipeDialog] = useState(false)
-  const [selectedPackagingExecution, setSelectedPackagingExecution] = useState<Record<string, any> | null>(null)
-  const [isOpenSectionsDialog, setIsOpenSectionsDialog] = useState(false)
-  // const [selectedPackagingExecution, setSelectedPackagingExecution] = useState<Record<string, any> | null>(packagingExecutions[0])
-  const [isOpenPreparedPackagingDialog, setIsOpenPreparedPackagingDialog] = useState(false)
+  const [isOpenPackagingsDialog, setIsOpenPackagingsDialog] = useState(true)
 
-  const toggleOpenRecipeDialog = () => setIsOpenRecipeDialog(!isOpenRecipeDialog)
-  const toggleOpenPreparedPackagingDialog = () => setIsOpenPreparedPackagingDialog(!isOpenPreparedPackagingDialog)
+  const toggleOpenRecipeDialog = () => setIsOpenPackagingsDialog(!isOpenPackagingsDialog)
 
-  const handleSubmitRecipe = (values: Record<string, any>) => {
-    setSelectedPackagingExecution(values.recipe)
-    setIsOpenSectionsDialog(true)
-  }
-
-  const handleCloseSectionsDialog = () => {
-		// setSelectedPackagingExecution(null)
-    setIsOpenSectionsDialog(false)
-    toggleOpenRecipeDialog()
-	}
-
-  const handleSubmitSections = (values: Record<string, any>) => {
-    console.log('handleSubmitSections values', values)
-    toggleOpenPreparedPackagingDialog()
-    setIsOpenSectionsDialog(false)
-  }
-
-  const handleSubmitPreparedPackaging = (values: Record<string, any>) => {
-    console.log('handleSubmitPreparedPackaging values', values)
-    toggleOpenRecipeDialog()
+  const handleSubmitReprod = (values: Record<string, any>) => {
+    console.log('handleSubmitReprod', values)
   }
 
   return (
@@ -59,30 +34,16 @@ const App = () => {
       {/* content */}
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: "column",  alignItems: 'center', gap: '16px', p: 6, mt: 1 }}>
         <Button onClick={toggleOpenRecipeDialog} variant="contained">Faire une contre-pesée/reprod</Button>
-        {/* table with list of recipe */}
-        <Recipes />
       </Box>
-      {/* modals */}
-      {/* 1. recipe modal */}
-      <RecipeDialogForm
-        onClose={toggleOpenRecipeDialog}
-        open={isOpenRecipeDialog}
-        onSubmit={handleSubmitRecipe}
-      />
+
       {/* 2. sections modal */}
-      <SectionsSelectionDialogForm
-        packagingExecution={selectedPackagingExecution}
-        open={isOpenSectionsDialog}
-        onClose={handleCloseSectionsDialog}
-        onSubmit={handleSubmitSections}
+      <PEReprodPackagingsDialogForm
+        packagingExecution={packagingExecution}
+        open={isOpenPackagingsDialog}
+        onClose={toggleOpenRecipeDialog}
+        onSubmit={handleSubmitReprod}
       />
-      {/* 3. prepared packaging form */}
-      <PreparedPackagingDialogForm
-        open={isOpenPreparedPackagingDialog}
-        onClose={toggleOpenPreparedPackagingDialog}
-        packagingExecution={selectedPackagingExecution}
-        onSubmit={handleSubmitPreparedPackaging}
-      />
+
     </Box>
   );
 }
