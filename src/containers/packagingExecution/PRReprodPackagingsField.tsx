@@ -34,7 +34,7 @@ type Props = {
   packagingForecastNumber?: number
   setFieldValue?: (field: string, value: any) => void
 }
-const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0, packagingForecastNumber = 0, setFieldValue }: Props) => {
+const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0, packagingForecastNumber = 0 }: Props) => {
 	return (
     <Stack spacing={2} sx={{width:"100%"}}>
       <Stack spacing={1} direction={"row"}>
