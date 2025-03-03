@@ -298,3 +298,8 @@ export const packagingExecution = {
   "objectId": "R5ZMNnxUmE",
   "packagingForecastNumber": 0
 }
+
+export const proposedWeightsBySections = {
+  "9GUUVtGagC": 12,
+  "E82HNQHRSs": 8,
+}
