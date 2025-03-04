@@ -188,7 +188,7 @@ export const packagingExecution = {
             "counterWeighing": {
                 "weight": 20,
                 "reason": "other"
-                }
+            }
       }
   ],
   "packagings": [
