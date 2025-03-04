@@ -117,7 +117,12 @@ export const packagingExecution = {
           "forecastWaste": 0.004000000000019099,
           "recipeSectionWeight": 0.3911225,
           "proposedWeight": 0.3865546218487395,
-          "packagingForecastNumber": null
+          "packagingForecastNumber": null,
+          // added manually to the db
+          "counterWeighing": {
+            "weight": 10,
+            "reason": "broken"
+          }
       },
       {
           "section": {
@@ -178,7 +183,12 @@ export const packagingExecution = {
           "realWeight": 0.155,
           "forecastWaste": 1.670000000000016,
           "proposedWeight": 0.155,
-          "packagingForecastNumber": null
+          "packagingForecastNumber": null,
+            // added manually to the db
+            "counterWeighing": {
+                "weight": 20,
+                "reason": "other"
+                }
       }
   ],
   "packagings": [
