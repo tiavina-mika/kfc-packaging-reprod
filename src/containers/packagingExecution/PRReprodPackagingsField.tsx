@@ -79,7 +79,8 @@ const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0,
           </TableRow>
           <TableRow>
             <PETableCell_V2 sx={styles.borders.bottomLeft}>
-              Prévisionnelle
+              Barquettes 
+              encore réalisables
             </PETableCell_V2>
               {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
