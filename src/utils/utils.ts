@@ -33,6 +33,7 @@ export const packagingNature = [
 
 export const formatPackagingExecutionWeightsInitialValues = (
   packagingExecution: Record<string, any>,
+  // from data api
   proposedWeightsBySections: Record<string, any> = {}
 ) => {
   return {
