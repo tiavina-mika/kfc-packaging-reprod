@@ -92,7 +92,7 @@ const PEReprodDialogForm = ({
                 <Box ref={descriptionElementRef} tabIndex={-1}>
                     <Formik
                         innerRef={formikRef}
-                        initialValues={formatPackagingExecutionWeightsInitialValues(packagingExecution, proposedWeightsBySections)}
+                        initialValues={formatPackagingExecutionWeightsInitialValues(packagingExecution, proposedWeightsBySections, packagingExecution.tempRealNumber)}
                         // validationSchema={schema}
                         onSubmit={_handleSubmit}
                     >
@@ -106,6 +106,7 @@ const PEReprodDialogForm = ({
                                                 expectedPackagingNumber={values.expectedPackagingNumber}
                                                 packagingForecastNumber={values.packagingForecastNumber}
                                                 setFieldValue={setFieldValue}
+                                                totalRealizedNumber={values.totalRealizedNumber}
                                             />
                                             {errors?.packagings && typeof errors.packagings === 'string' && (
                                                 <FormHelperText error>{errors.packagings}</FormHelperText>
