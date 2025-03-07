@@ -57,7 +57,7 @@ const PEReprodSectionField = ({
 			</PETableCell_V2>
 			<PETableCell_V2>
 				{formatCellValue(
-					roundNumber((section.initialProductionWeight || 0), 1),
+					roundNumber((section.counterWeighing.weight || 0), 1),
 					roundNumber((section.totalTheoreticalWeight || 0), 1),
 					"kg",
 					{color: COLORS.DRAFT_GREY}
