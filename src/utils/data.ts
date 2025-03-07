@@ -118,6 +118,7 @@ export const packagingExecution = {
           "recipeSectionWeight": 0.3911225,
           "proposedWeight": 0.3865546218487395,
           "packagingForecastNumber": null,
+          "totalTheoreticalWeight": 2,
           // added manually to the db
           "counterWeighing": {
             "weight": 10,
