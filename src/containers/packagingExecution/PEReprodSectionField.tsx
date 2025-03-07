@@ -95,7 +95,7 @@ const PEReprodSectionField = ({
 				</FormHelperText>
 			)}
 			</PETableCell_V2>
-			<PETableCell_V2 
+			{/* <PETableCell_V2 
 				sx={{ ...styles.borders.right, color: COLORS.BLACK800 }}
 			>
 				{formatCellValue(
@@ -103,7 +103,7 @@ const PEReprodSectionField = ({
 					null,
 					"kg",
 				)}
-			</PETableCell_V2>
+			</PETableCell_V2> */}
 		</TableRow>
 	)
 }
