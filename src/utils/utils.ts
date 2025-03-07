@@ -82,13 +82,16 @@ export const formatPackagingExecutionWeightsInitialValues = (
     ...packagingExecution,
     expectedPackagingNumber: packagingExecution.expectedPackagingNumber || 0,
     packagings,
-    sections: packagingExecution.sections.map((section: Record<string, any>) => ({
-      ...section,
-      realWeight: 0,
-      proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
-      forecastWaste: section.forecastWaste || 0,
-      packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
-    })),
+    sections: packagingExecution.sections.map((section: Record<string, any>) => {
+      console.log('section: ', section);
+      return {
+        ...section,
+        realWeight: 0,
+        proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
+        forecastWaste: section.forecastWaste || 0,
+        packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
+      }
+    }),
     totalRealizedNumber: total,
     packagingForecastNumber: 0 // won't be saved in db for display only and to ease waste calculations
   }
