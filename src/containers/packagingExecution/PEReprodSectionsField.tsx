@@ -74,17 +74,18 @@ const PEReprodSectionsField = ({
               Élements à barquetter
             </PETableHeaderCell_V2>
             <PETableHeaderCell_V2 align="left">
-              Quantité produite / estimée
+							Quantité pesée / Théorique
+              {/* Quantité produite / estimée */}
             </PETableHeaderCell_V2>
             <PETableHeaderCell_V2 align="left">
-              Quantité de la fiche recette
+							À reproduire en operculé
             </PETableHeaderCell_V2>
             <PETableHeaderCell_V2 align="left">
-              Quantité à barquetter
+							À reproduire en réemployable et jetable
             </PETableHeaderCell_V2>
-            <PETableHeaderCell_V2 align="left">
+            {/* <PETableHeaderCell_V2 align="left">
               Restes
-            </PETableHeaderCell_V2>
+            </PETableHeaderCell_V2> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -103,7 +104,7 @@ const PEReprodSectionsField = ({
 					/>
 				))}
 
-				<TableRow>
+				{/* <TableRow>
 					<PETotalTableCell_V2>
 						Total
 					</PETotalTableCell_V2>
@@ -135,7 +136,7 @@ const PEReprodSectionsField = ({
             "kg"
 						)}
 					</PETotalTableCell_V2>
-				</TableRow>
+				</TableRow> */}
         </TableBody>
       </PETable>
     </Stack>)
