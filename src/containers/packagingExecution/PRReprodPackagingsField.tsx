@@ -2,7 +2,7 @@ import React from "react"
 import { TableBody, TableRow, TableHead, Stack } from "@mui/material"
 import Typography from "@mui/material/Typography"
 import { PETable, PETableCell_V2, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
-import { packagingNature } from "../../utils/utils"
+import { getOrderedPackagings, packagingNature } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
 
 const styles = {
@@ -23,18 +23,21 @@ const styles = {
   }
 }
 
-const getOrderedPackagings = (packagings: Record<string, any>[] = []) => {
-  const order = ["CAPPED", "REUSABLE", "DISPOSABLE"];
-  return packagings.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
-}
+
 
 type Props = {
   packagings?: Record<string, any>[]
   expectedPackagingNumber?: number
   packagingForecastNumber?: number
   setFieldValue?: (field: string, value: any) => void
+  totalRealizedNumber?: number
 }
-const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0, packagingForecastNumber = 0 }: Props) => {
+const PRReprodPackagingsField = ({
+  packagings = [],
+  expectedPackagingNumber = 0,
+  packagingForecastNumber = 0,
+  totalRealizedNumber = 0
+}: Props) => {
 	return (
     <Stack spacing={2} sx={{width:"100%"}}>
       <Stack spacing={1} direction={"row"}>
@@ -75,6 +78,23 @@ const PRReprodPackagingsField = ({ packagings = [], expectedPackagingNumber = 0,
               ))}
             <PETableCell_V2 sx={styles.borders.right}>
               {expectedPackagingNumber || "-"}
+            </PETableCell_V2>
+          </TableRow>
+          <TableRow>
+            <PETableCell_V2 sx={styles.borders.bottomLeft}>
+              Réalisées
+            </PETableCell_V2>
+              {packagings.map((currentPackaging: Record<string, any>, index: number) => (
+                <React.Fragment key={index}>
+                  <PETableCell_V2>
+                    {currentPackaging.realizedNumber || "-"}
+                  </PETableCell_V2>
+                </React.Fragment>
+              ))}
+            <PETableCell_V2
+              sx={{ ...styles.borders.bottomRight, color: COLORS.PRIMARY_COLOR, }}
+            >
+              {totalRealizedNumber || "-"}
             </PETableCell_V2>
           </TableRow>
           <TableRow>
