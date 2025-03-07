@@ -31,18 +31,57 @@ export const packagingNature = [
 	{ value: "CAPPED", label: "Operculé" }
 ]
 
+export const getOrderedPackagings = (packagings: Record<string, any>[] = []) => {
+  const order = ["CAPPED", "REUSABLE", "DISPOSABLE"];
+  return packagings.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
+}
+
 export const formatPackagingExecutionWeightsInitialValues = (
   packagingExecution: Record<string, any>,
   // from data api
-  proposedWeightsBySections: Record<string, any> = {}
+  proposedWeightsBySections: Record<string, any> = {},
+  tempRealNumber = 0
 ) => {
+  const packagings: Record<string, any>[] = []
+  let total = 0
+  let eachRealizedNumber = tempRealNumber
+
+  getOrderedPackagings(packagingExecution.packagings).forEach((packaging) =>{
+    const min = Math.min(eachRealizedNumber, packaging.theoreticalNumber)
+
+    packagings.push({
+      ...packaging,
+      realizedNumber: min,
+      forecastNumber: packaging.forecastNumber || 0
+    })
+    eachRealizedNumber -= min
+    total += min
+    
+  })
+
+  // let eachRealizedNumber = tempRealNumber
+  // let currentPackagingForecastNumber = tempRealNumber
+  // getOrderedPackagings(packagingExecution.packagings).forEach((packaging, index) =>{
+  //   const isLast = index === packagings.length - 1
+  //   const packagingTheoreticalNumber = packaging.theoreticalNumber || 0
+  //   const usedPackagingNumber = isLast ? currentPackagingForecastNumber : Math.min(packagingTheoreticalNumber, currentPackagingForecastNumber)
+  //   // setFieldValue(`packagings[${index}].forecastNumber`, usedPackagingNumber)
+  //   currentPackagingForecastNumber -= usedPackagingNumber
+  //   currentPackagingForecastNumber = Math.max(0, currentPackagingForecastNumber)
+
+  //   packagings.push({
+  //     ...packaging,
+  //     realizedNumber: currentPackagingForecastNumber,
+  //     forecastNumber: usedPackagingNumber || 0
+  //   })
+    
+  //   total += currentPackagingForecastNumber
+  // })
+
   return {
     ...packagingExecution,
     expectedPackagingNumber: packagingExecution.expectedPackagingNumber || 0,
-    packagings: packagingExecution.packagings.map((packaging: Record<string, any>) => ({
-      ...packaging,
-      forecastNumber: packaging.forecastNumber || 0
-    })),
+    packagings,
     sections: packagingExecution.sections.map((section: Record<string, any>) => ({
       ...section,
       realWeight: 0,
@@ -50,6 +89,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
       forecastWaste: section.forecastWaste || 0,
       packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
     })),
+    totalRealizedNumber: total,
     packagingForecastNumber: 0 // won't be saved in db for display only and to ease waste calculations
   }
 }
