@@ -42,11 +42,12 @@ export const formatPackagingExecutionWeightsInitialValues = (
   proposedWeightsBySections: Record<string, any> = {},
   tempRealNumber = 0
 ) => {
+  const orderPackagins = getOrderedPackagings(packagingExecution.packagings) || []
   const packagings: Record<string, any>[] = []
   let total = 0
   let eachRealizedNumber = tempRealNumber
 
-  getOrderedPackagings(packagingExecution.packagings).forEach((packaging) =>{
+  for (const packaging of orderPackagins) {
     const min = Math.min(eachRealizedNumber, packaging.theoreticalNumber)
 
     packagings.push({
@@ -56,42 +57,32 @@ export const formatPackagingExecutionWeightsInitialValues = (
     })
     eachRealizedNumber -= min
     total += min
-    
-  })
+  }
 
-  // let eachRealizedNumber = tempRealNumber
-  // let currentPackagingForecastNumber = tempRealNumber
-  // getOrderedPackagings(packagingExecution.packagings).forEach((packaging, index) =>{
-  //   const isLast = index === packagings.length - 1
-  //   const packagingTheoreticalNumber = packaging.theoreticalNumber || 0
-  //   const usedPackagingNumber = isLast ? currentPackagingForecastNumber : Math.min(packagingTheoreticalNumber, currentPackagingForecastNumber)
-  //   // setFieldValue(`packagings[${index}].forecastNumber`, usedPackagingNumber)
-  //   currentPackagingForecastNumber -= usedPackagingNumber
-  //   currentPackagingForecastNumber = Math.max(0, currentPackagingForecastNumber)
+  const cappedPackaging = packagings.find((packaging) => packaging.type === "CAPPED")
+  const cappedPackagingWeight = cappedPackaging ? (cappedPackaging.realizedNumber - cappedPackaging.theoreticalNumber) : 0
 
-  //   packagings.push({
-  //     ...packaging,
-  //     realizedNumber: currentPackagingForecastNumber,
-  //     forecastNumber: usedPackagingNumber || 0
-  //   })
-    
-  //   total += currentPackagingForecastNumber
-  // })
+  const sections: Record<string, any>[] = []
+
+  for (const section of packagingExecution.sections) {
+    const values = {
+      ...section,
+      realWeight: 0,
+      proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
+      forecastWaste: section.forecastWaste || 0,
+      cappedPackagingWeight: cappedPackagingWeight,
+      packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
+    }
+
+
+    sections.push(values)
+  }
 
   return {
     ...packagingExecution,
     expectedPackagingNumber: packagingExecution.expectedPackagingNumber || 0,
     packagings,
-    sections: packagingExecution.sections.map((section: Record<string, any>) => {
-      console.log('section: ', section);
-      return {
-        ...section,
-        realWeight: 0,
-        proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
-        forecastWaste: section.forecastWaste || 0,
-        packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
-      }
-    }),
+    sections,
     totalRealizedNumber: total,
     packagingForecastNumber: 0 // won't be saved in db for display only and to ease waste calculations
   }
