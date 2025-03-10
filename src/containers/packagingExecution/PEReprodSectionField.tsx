@@ -66,7 +66,8 @@ const PEReprodSectionField = ({
 			<PETableCell_V2>
 				<Stack direction="row" alignItems="center" gap={1}>
 					{formatCellValue(
-						_renderKiloToGrams(section.recipeSectionWeight) || 0,
+						_renderKiloToGrams(section.cappedPackagingWeight) || 0,
+						// _renderKiloToGrams(section.recipeSectionWeight) || 0,
 						null,
 						"g",
 						{color: COLORS.DRAFT_GREY}
