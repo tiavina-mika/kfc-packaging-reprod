@@ -19,10 +19,8 @@ const PEReprodSectionsField = ({
 	sections = [],
 	packagings = [],
 	errors,
-	packagingForecastNumber,
 	setFieldValue,
 	setFieldTouched,
-	touchedSections = []
 }: Props) => {
 	const handleChangeSectionRealWeight = (value: any, index: number) => {
 		// 1. Update the realWeight of the section
