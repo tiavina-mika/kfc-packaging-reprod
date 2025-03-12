@@ -38,6 +38,10 @@ const PEReprodSectionsField = ({
 		const globalPackagingForecastNumber = calculateGlobalPackagingForecastNumber(copiedSections)
 		setFieldValue("packagingForecastNumber", globalPackagingForecastNumber)
 
+		if (packagings.length === 1) {
+			setFieldValue("packagings[0].forecastNumber", globalPackagingForecastNumber)
+			return
+		}
 		const updatedPackagings = calculatePackagingsForecastNumber(packagings, globalPackagingForecastNumber)
 		setFieldValue("packagings", updatedPackagings)
 	}
