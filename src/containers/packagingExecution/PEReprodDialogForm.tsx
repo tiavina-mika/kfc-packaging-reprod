@@ -104,7 +104,7 @@ const PEReprodDialogForm = ({
                                             <PRReprodPackagingsField
                                                 packagings={values.packagings}
                                                 expectedPackagingNumber={values.expectedPackagingNumber}
-                                                packagingForecastNumber={values.packagingForecastNumber}
+                                                totalRealizableNumber={values.totalRealizableNumber}
                                                 setFieldValue={setFieldValue}
                                                 totalRealizedNumber={values.totalRealizedNumber}
                                             />
