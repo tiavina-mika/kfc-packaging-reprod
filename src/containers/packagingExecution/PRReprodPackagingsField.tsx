@@ -8,19 +8,30 @@ import { getOrderedPackagings } from "../../utils/packagingExecutionUtils"
 
 const styles = {
   borders: {
-    left: { borderLeft: "1px solid #E6E6E6" },
-    right: { borderRight: "1px solid #E6E6E6" },
+    left: {
+      borderLeft: "1px solid #E6E6E6",
+      borderBottom: "none",
+    },
+    right: { 
+      borderRight: "1px solid #E6E6E6",
+      borderBottom: "none",
+    },
     bottomLeft: {
       borderLeft: "1px solid #E6E6E6",
-      borderBottom: "1px solid #E6E6E6",
+      // borderBottom: "1px solid #E6E6E6",
+      borderBottom: "none",
       borderRadius: "0 0 0 6px",
     },
     bottomRight: {
       borderRight: "1px solid #E6E6E6",
-      borderBottom: "1px solid #E6E6E6",
+      // borderBottom: "1px solid #E6E6E6",
+      borderBottom: "none",
       borderRadius: "0 0 6px 0",
       fontWeight: "500",
     },
+    noBorder: {
+      border: "none"
+    }
   }
 }
 
@@ -72,7 +83,7 @@ const PRReprodPackagingsField = ({
             </PETableCell_V2>
               {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
-                  <PETableCell_V2>
+                  <PETableCell_V2 sx={styles.borders.noBorder}>
                     {currentPackaging.forecastNumber} / {currentPackaging.theoreticalNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
@@ -87,7 +98,7 @@ const PRReprodPackagingsField = ({
             </PETableCell_V2>
               {packagings.map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
-                  <PETableCell_V2>
+                  <PETableCell_V2 sx={styles.borders.noBorder}>
                     {currentPackaging.realizedNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
@@ -105,7 +116,7 @@ const PRReprodPackagingsField = ({
             </PETableCell_V2>
               {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
-                  <PETableCell_V2>
+                  <PETableCell_V2 sx={styles.borders.noBorder}>
                     {currentPackaging.realizableNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
