@@ -17,7 +17,6 @@ type Props = {
 	setFieldTouched: (field: string) => void
 	onChangeSectionRealWeight: (value: any, sectionIndex: number) => void
 	formatCellValue: (value1: any, value2: any, unit: string, style?: Record<string, any>) => any
-	onChangeFocusedFieldIndex: (index: number | null) => void,
 	errors: Record<string, any>
 }
 const PEReprodSectionField = ({
@@ -26,7 +25,6 @@ const PEReprodSectionField = ({
 	setFieldTouched,
 	onChangeSectionRealWeight,
 	formatCellValue,
-	onChangeFocusedFieldIndex,
 	errors
 }: Props) => {
 	const _renderKiloToGrams = (value: number) => {
@@ -83,8 +81,6 @@ const PEReprodSectionField = ({
 							type="number"
 							onWheel={handleOnWheel}
 							onKeyDown={handleOnKeyDown}
-              onFocus={() => onChangeFocusedFieldIndex(sectionIndex)}
-              onBlur={() => onChangeFocusedFieldIndex(null)}
 						/>
 						<span style={{color:COLORS.DRAFT_GREY}}> g</span>
 					</Stack>
