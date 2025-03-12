@@ -13,16 +13,16 @@ const styles = {
 
 type Props = {
 	section: Record<string, any>
-	index: number
+	sectionIndex: number
 	setFieldTouched: (field: string) => void
-	onChangeSectionRealWeight: (value: any) => void
+	onChangeSectionRealWeight: (value: any, sectionIndex: number) => void
 	formatCellValue: (value1: any, value2: any, unit: string, style?: Record<string, any>) => any
 	onChangeFocusedFieldIndex: (index: number | null) => void,
 	errors: Record<string, any>
 }
 const PEReprodSectionField = ({
 	section,
-	index,
+	sectionIndex,
 	setFieldTouched,
 	onChangeSectionRealWeight,
 	formatCellValue,
@@ -35,8 +35,8 @@ const PEReprodSectionField = ({
 
 	const handleChangeRealWeight = (e: ChangeEvent<HTMLInputElement>) => {
 			if (!setFieldTouched) return
-			setFieldTouched(`sections[${index}].realWeight`);
-			onChangeSectionRealWeight(e.target.value)
+			setFieldTouched(`sections[${sectionIndex}].realWeight`);
+			onChangeSectionRealWeight(e.target.value, sectionIndex)
 	}
 
 	const handleOnWheel = (e: WheelEvent<HTMLInputElement>) => {
@@ -57,7 +57,7 @@ const PEReprodSectionField = ({
 			</PETableCell_V2>
 			<PETableCell_V2>
 				{formatCellValue(
-					roundNumber((section.counterWeighing.weight || 0), 1),
+					roundNumber((section.counterWeighing?.weight || 0), 1),
 					roundNumber((section.totalTheoreticalWeight || 0), 1),
 					"kg",
 					{color: COLORS.DRAFT_GREY}
@@ -66,8 +66,7 @@ const PEReprodSectionField = ({
 			<PETableCell_V2>
 				<Stack direction="row" alignItems="center" gap={1}>
 					{formatCellValue(
-						_renderKiloToGrams(section.cappedPackagingWeight) || 0,
-						// _renderKiloToGrams(section.recipeSectionWeight) || 0,
+						_renderKiloToGrams(section.cappedPackagingWeight) || 0, // calculated value 
 						null,
 						"g",
 						{color: COLORS.DRAFT_GREY}
@@ -77,22 +76,22 @@ const PEReprodSectionField = ({
 			<PETableCell_V2>
 					<Stack direction="row" alignItems="center" gap={1}>
 						<PETextField
-							name={`sections[${index}].realWeight`}
-							value={section.realWeight === "" ? "" : _renderKiloToGrams(section.realWeight)}
+							name={`sections[${+sectionIndex}].realWeight`}
+							value={section.realWeight}
 							variant="outlined"
 							onChange={handleChangeRealWeight}
 							type="number"
 							onWheel={handleOnWheel}
 							onKeyDown={handleOnKeyDown}
-              onFocus={() => onChangeFocusedFieldIndex(index)}
+              onFocus={() => onChangeFocusedFieldIndex(sectionIndex)}
               onBlur={() => onChangeFocusedFieldIndex(null)}
 						/>
 						<span style={{color:COLORS.DRAFT_GREY}}> g</span>
 					</Stack>
-			{/* <FormikErrorMessage name={`sections[${index}].realWeight`} /> */}
-			{(errors as any)?.sections?.[index]?.realWeight && (
+			{/* <FormikErrorMessage name={`sections[${sectionIndex}].realWeight`} /> */}
+			{(errors as any)?.sections?.[sectionIndex]?.realWeight && (
 				<FormHelperText error>
-					{(errors as any).sections[index].realWeight}
+					{(errors as any).sections[sectionIndex].realWeight}
 				</FormHelperText>
 			)}
 			</PETableCell_V2>
