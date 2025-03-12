@@ -31,6 +31,9 @@ const styles = {
     },
     noBorder: {
       border: "none"
+    },
+    withBorderBottom: {
+      borderBottom: "1px solid #E6E6E6",
     }
   }
 }
@@ -110,19 +113,19 @@ const PRReprodPackagingsField = ({
             </PETableCell_V2>
           </TableRow>
           <TableRow>
-            <PETableCell_V2 sx={styles.borders.bottomLeft}>
+            <PETableCell_V2 sx={{ ...styles.borders.left, ...styles.borders.withBorderBottom }}>
               Barquettes 
               encore réalisables
             </PETableCell_V2>
               {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
-                  <PETableCell_V2 sx={styles.borders.noBorder}>
+                  <PETableCell_V2 sx={{ ...styles.borders.noBorder, ...styles.borders.withBorderBottom }}>
                     {currentPackaging.realizableNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
               ))}
             <PETableCell_V2
-              sx={styles.borders.bottomRight}
+              sx={{ ...styles.borders.right, ...styles.borders.withBorderBottom }}
             >
               {totalRealizableNumber || "-"}
             </PETableCell_V2>
