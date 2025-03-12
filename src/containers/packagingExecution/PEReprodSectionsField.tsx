@@ -1,10 +1,8 @@
 import { TableHead, TableBody, TableRow, Stack } from "@mui/material"
-import { PETable, PETableHeaderCell_V2, PETotalTableCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
+import { PETable, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
 import PEReprodSectionField from "./PEReprodSectionField"
 import Typography from "@mui/material/Typography"
-import { convertKilosIntoGrams, roundNumber } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
-import { useState } from "react"
 import { calculateGlobalPackagingForecastNumber, calculatePackagingForecastNumberBySection, calculatePackagingsForecastNumber } from "../../utils/packagingExecutionUtils"
 
 type Props = {
