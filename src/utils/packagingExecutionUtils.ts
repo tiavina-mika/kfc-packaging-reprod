@@ -111,20 +111,3 @@ export const calculatePackagingsForecastNumber = (packagings: Record<string, any
 
   return newPackagings
 }
-
-export const calculatePackagingsRealizablePackagingNumber = (
-  sections: Record<string, any>[] = [],
-  packagings: Record<string, any>[] = [],
-) => {
-  const realizableNumbers = []
-
-  for (const section of sections) {
-    const realizableNumber = convertKilosIntoGrams(section.initialProductionWeight) - section.recipeSectionWeight
-    realizableNumbers.push(realizableNumber)
-  }
-
-  const minRealizableNumber = Math.min(...realizableNumbers)
-
-  const { newPackagings, totalPackagingNumber: totalRealizableNumber } = distributePackagingNumbers(packagings, minRealizableNumber, "realizableNumber")
-  return distributePackagingNumbers(packagings, minRealizableNumber, "realizableNumber")
-}
