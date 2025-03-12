@@ -106,7 +106,7 @@ const PRReprodPackagingsField = ({
               {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
                   <PETableCell_V2>
-                    {currentPackaging.forecastNumber || "-"}
+                    {currentPackaging.realizableNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
               ))}
