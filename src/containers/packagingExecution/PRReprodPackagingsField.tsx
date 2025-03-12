@@ -93,7 +93,7 @@ const PRReprodPackagingsField = ({
                 </React.Fragment>
               ))}
             <PETableCell_V2
-              sx={{ ...styles.borders.bottomRight, color: COLORS.PRIMARY_COLOR, }}
+              sx={styles.borders.bottomRight}
             >
               {totalRealizedNumber || "-"}
             </PETableCell_V2>
@@ -111,7 +111,7 @@ const PRReprodPackagingsField = ({
                 </React.Fragment>
               ))}
             <PETableCell_V2
-              sx={{ ...styles.borders.bottomRight, color: COLORS.PRIMARY_COLOR, }}
+              sx={styles.borders.bottomRight}
             >
               {totalRealizableNumber || "-"}
             </PETableCell_V2>
