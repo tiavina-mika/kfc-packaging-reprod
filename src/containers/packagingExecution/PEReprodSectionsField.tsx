@@ -26,12 +26,6 @@ const PEReprodSectionsField = ({
 	setFieldTouched,
 	touchedSections = []
 }: Props) => {
-	const [focusedFieldIndex, setFocusedFieldIndex] = useState<number | null>(null)
-
-	const handleChangeFocusedIndex = (index: number | null) => {
-		setFocusedFieldIndex(index)
-	}
-
 	const handleChangeSectionRealWeight = (value: any, index: number) => {
 		setFieldValue(`sections[${index}].realWeight`, value)
 
@@ -110,7 +104,6 @@ const PEReprodSectionsField = ({
 						setFieldTouched={setFieldTouched} 
 						onChangeSectionRealWeight={handleChangeSectionRealWeight}
 						formatCellValue={formatCellValue}
-						onChangeFocusedFieldIndex={handleChangeFocusedIndex}
 						errors={errors}
 					/>
 				))}
