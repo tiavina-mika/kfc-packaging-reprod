@@ -1,4 +1,4 @@
-import { convertGramsIntoKilos } from "./utils"
+import { convertGramsIntoKilos, convertKilosIntoGrams } from "./utils"
 
 export const getOrderedPackagings = (packagings: Record<string, any>[] = []) => {
   const order = ["CAPPED", "REUSABLE", "DISPOSABLE"];
@@ -13,7 +13,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
 ) => {
   const orderPackagins = getOrderedPackagings(packagingExecution.packagings) || []
   const packagings: Record<string, any>[] = []
-  let total = 0
+  let totalRealizedNumber = 0
   let eachRealizedNumber = tempRealNumber
 
   for (const packaging of orderPackagins) {
@@ -25,7 +25,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
       forecastNumber: packaging.forecastNumber || 0
     })
     eachRealizedNumber -= min
-    total += min
+    totalRealizedNumber += min
   }
 
   const cappedPackaging = packagings.find((packaging) => packaging.type === "CAPPED")
@@ -51,7 +51,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
     expectedPackagingNumber: packagingExecution.expectedPackagingNumber || 0,
     packagings,
     sections,
-    totalRealizedNumber: total,
+    totalRealizedNumber: totalRealizedNumber,
     packagingForecastNumber: 0 // won't be saved in db for display only and to ease waste calculations
   }
 }
@@ -95,3 +95,14 @@ export const calculatePackagingsForecastNumber = (packagings: Record<string, any
 
   return newPackagings
 }
+
+// export const calculatePackagingsRealizablePackagingNumber = (sections: Record<string, any>[] = []) => {
+//   const realizableNumbers = []
+
+//   for (const section of sections) {
+//     const realizableNumber = convertKilosIntoGrams(section.initialProductionWeight) - section.recipeSectionWeight
+//     realizableNumbers.push(realizableNumber)
+//   }
+
+//   const minRealizableNumber = Math.min(...realizableNumbers)
+// }
