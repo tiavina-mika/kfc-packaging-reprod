@@ -31,6 +31,7 @@ const distributePackagingNumbers = (packagings: Record<string, any>[], initialNu
     totalPackagingNumber
   }
 }
+
 export const formatPackagingExecutionWeightsInitialValues = (
   packagingExecution: Record<string, any>,
   // from data api
