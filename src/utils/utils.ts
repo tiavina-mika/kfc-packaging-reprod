@@ -74,7 +74,6 @@ export const formatPackagingExecutionWeightsInitialValues = (
       packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
     }
 
-
     sections.push(values)
   }
 
