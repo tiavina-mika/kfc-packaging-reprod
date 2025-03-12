@@ -25,17 +25,21 @@ const PEReprodSectionsField = ({
 	touchedSections = []
 }: Props) => {
 	const handleChangeSectionRealWeight = (value: any, index: number) => {
+		// 1. Update the realWeight of the section
 		setFieldValue(`sections[${index}].realWeight`, value)
 
+		// 2. Calculate the packagingForecastNumber of the section
 		const forecastNumber = calculatePackagingForecastNumberBySection(sections[index], value)
 		setFieldValue(`sections[${index}].packagingForecastNumber`, forecastNumber)
 
+		// 3. Calculate the global packaging
 		const section = { ...sections[index], realWeight: value, forecastWaste: forecastNumber }
 		const copiedSections = [...sections]
 		copiedSections[index] = section
 		const globalPackagingForecastNumber = calculateGlobalPackagingForecastNumber(copiedSections)
 		setFieldValue("packagingForecastNumber", globalPackagingForecastNumber)
 
+		// 4. Calculate the packagings forecast number
 		if (packagings.length === 1) {
 			setFieldValue("packagings[0].forecastNumber", globalPackagingForecastNumber)
 			return
