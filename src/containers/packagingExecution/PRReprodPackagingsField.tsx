@@ -2,8 +2,9 @@ import React from "react"
 import { TableBody, TableRow, TableHead, Stack } from "@mui/material"
 import Typography from "@mui/material/Typography"
 import { PETable, PETableCell_V2, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
-import { getOrderedPackagings, packagingNature } from "../../utils/utils"
+import { packagingNature } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
+import { getOrderedPackagings } from "../../utils/packagingExecutionUtils"
 
 const styles = {
   borders: {
