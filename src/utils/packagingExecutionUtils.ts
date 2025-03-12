@@ -2,7 +2,6 @@ import { convertGramsIntoKilos } from "./utils"
 
 export const calculatePackagingForecastNumberBySection = (section: Record<string, any>, realWeight = 1): number => {
   const realWeightKilos = convertGramsIntoKilos(realWeight)
-  // const realWeightKilos = convertGramsIntoKilos(realWeight)
   const sectionProductionWeight = section.initialProductionWeight // already in kilos
   if (!sectionProductionWeight) return 0
 
