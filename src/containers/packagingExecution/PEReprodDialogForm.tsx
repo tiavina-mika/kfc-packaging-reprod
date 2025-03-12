@@ -12,8 +12,8 @@ import {
     Alert,
 } from "@mui/material"
 import PRReprodPackagingsField from "./PRReprodPackagingsField"
-import { formatPackagingExecutionWeightsInitialValues } from "../../utils/utils"
 import PEReprodSectionsField from "./PEReprodSectionsField"
+import { formatPackagingExecutionWeightsInitialValues } from "../../utils/packagingExecutionUtils"
 
 const sx = {
     dialog: {
