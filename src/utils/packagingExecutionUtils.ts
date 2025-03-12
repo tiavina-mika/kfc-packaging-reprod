@@ -47,14 +47,15 @@ export const formatPackagingExecutionWeightsInitialValues = (
 
   const sections: Record<string, any>[] = []
 
-
   for (const section of packagingExecution.sections) {
     sections.push({
       ...section,
       realWeight: 0,
+      // weight per section from data api
       proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
       forecastWaste: section.forecastWaste || 0,
-      cappedPackagingWeight: cappedPackagingWeight,
+      // 
+      cappedPackagingWeight,
       packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
     })
 
