@@ -5,53 +5,69 @@ export const getOrderedPackagings = (packagings: Record<string, any>[] = []) => 
   return packagings.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
 }
 
+const distributePackagingNumbers = (packagings: Record<string, any>[], initialNumber: number, field: string) => {
+  const orderPackagins = getOrderedPackagings(packagings) || []
+  const newPackagings: Record<string, any>[] = []
+  let totalPackagingNumber = 0
+  let eachPackagingNumber = initialNumber
+
+  for (const packaging of orderPackagins) {
+    const min = Math.min(eachPackagingNumber, packaging.theoreticalNumber)
+
+    newPackagings.push({
+      ...packaging,
+      [field]: min,
+      forecastNumber: packaging.forecastNumber || 0
+    })
+    eachPackagingNumber -= min
+    totalPackagingNumber += min
+  }
+
+  return {
+    newPackagings,
+    totalPackagingNumber
+  }
+}
 export const formatPackagingExecutionWeightsInitialValues = (
   packagingExecution: Record<string, any>,
   // from data api
   proposedWeightsBySections: Record<string, any> = {},
   tempRealNumber = 0
 ) => {
-  const orderPackagins = getOrderedPackagings(packagingExecution.packagings) || []
-  const packagings: Record<string, any>[] = []
-  let totalRealizedNumber = 0
-  let eachRealizedNumber = tempRealNumber
+  const { newPackagings, totalPackagingNumber: totalRealizedNumber } = distributePackagingNumbers(packagingExecution.packagings, tempRealNumber, "realizedNumber")
 
-  for (const packaging of orderPackagins) {
-    const min = Math.min(eachRealizedNumber, packaging.theoreticalNumber)
-
-    packagings.push({
-      ...packaging,
-      realizedNumber: min,
-      forecastNumber: packaging.forecastNumber || 0
-    })
-    eachRealizedNumber -= min
-    totalRealizedNumber += min
-  }
-
-  const cappedPackaging = packagings.find((packaging) => packaging.type === "CAPPED")
+  const cappedPackaging = newPackagings.find((packaging) => packaging.type === "CAPPED")
   const cappedPackagingWeight = cappedPackaging ? (cappedPackaging.realizedNumber - cappedPackaging.theoreticalNumber) : 0
+
+  const realizableNumbers = []
 
   const sections: Record<string, any>[] = []
 
+
   for (const section of packagingExecution.sections) {
-    const values = {
+    sections.push({
       ...section,
       realWeight: 0,
       proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
       forecastWaste: section.forecastWaste || 0,
       cappedPackagingWeight: cappedPackagingWeight,
       packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
-    }
+    })
 
-    sections.push(values)
+    const realizableNumber = convertKilosIntoGrams(section.initialProductionWeight) - section.recipeSectionWeight
+    realizableNumbers.push(realizableNumber)
   }
+
+  const minRealizableNumber = Math.min(...realizableNumbers)
+  const { newPackagings: updatedNewPackagings, totalPackagingNumber: totalRealizableNumber } = distributePackagingNumbers(newPackagings, minRealizableNumber, "realizableNumber")
 
   return {
     ...packagingExecution,
     expectedPackagingNumber: packagingExecution.expectedPackagingNumber || 0,
-    packagings,
+    packagings: updatedNewPackagings,
     sections,
     totalRealizedNumber: totalRealizedNumber,
+    totalRealizableNumber,
     packagingForecastNumber: 0 // won't be saved in db for display only and to ease waste calculations
   }
 }
@@ -96,13 +112,19 @@ export const calculatePackagingsForecastNumber = (packagings: Record<string, any
   return newPackagings
 }
 
-// export const calculatePackagingsRealizablePackagingNumber = (sections: Record<string, any>[] = []) => {
-//   const realizableNumbers = []
+export const calculatePackagingsRealizablePackagingNumber = (
+  sections: Record<string, any>[] = [],
+  packagings: Record<string, any>[] = [],
+) => {
+  const realizableNumbers = []
 
-//   for (const section of sections) {
-//     const realizableNumber = convertKilosIntoGrams(section.initialProductionWeight) - section.recipeSectionWeight
-//     realizableNumbers.push(realizableNumber)
-//   }
+  for (const section of sections) {
+    const realizableNumber = convertKilosIntoGrams(section.initialProductionWeight) - section.recipeSectionWeight
+    realizableNumbers.push(realizableNumber)
+  }
 
-//   const minRealizableNumber = Math.min(...realizableNumbers)
-// }
+  const minRealizableNumber = Math.min(...realizableNumbers)
+
+  const { newPackagings, totalPackagingNumber: totalRealizableNumber } = distributePackagingNumbers(packagings, minRealizableNumber, "realizableNumber")
+  return distributePackagingNumbers(packagings, minRealizableNumber, "realizableNumber")
+}
