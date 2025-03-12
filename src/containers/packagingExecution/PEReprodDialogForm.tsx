@@ -115,6 +115,7 @@ const PEReprodDialogForm = ({
                                         <Stack spacing={1}>
                                             <PEReprodSectionsField
                                                 sections={values.sections}
+                                                packagings={values.packagings}
                                                 packagingForecastNumber={values.packagingForecastNumber}
                                                 touchedSections={touched.sections}
                                                 setFieldValue={setFieldValue}
