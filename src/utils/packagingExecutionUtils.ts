@@ -6,21 +6,24 @@ export const getOrderedPackagings = (packagings: Record<string, any>[] = []) => 
 }
 
 const distributePackagingNumbers = (packagings: Record<string, any>[], initialNumber: number, field: string) => {
+  // 1. Order packagings by type (CAPPED, REUSABLE, DISPOSABLE)
   const orderPackagins = getOrderedPackagings(packagings) || []
+
   const newPackagings: Record<string, any>[] = []
   let totalPackagingNumber = 0
   let eachPackagingNumber = initialNumber
 
   for (const packaging of orderPackagins) {
-    const min = Math.min(eachPackagingNumber, packaging.theoreticalNumber)
+    // 2. Distribute the initial number of packagings
+    const minNumber = Math.min(eachPackagingNumber, packaging.theoreticalNumber)
 
     newPackagings.push({
       ...packaging,
-      [field]: min,
+      [field]: minNumber,
       forecastNumber: packaging.forecastNumber || 0
     })
-    eachPackagingNumber -= min
-    totalPackagingNumber += min
+    eachPackagingNumber -= minNumber
+    totalPackagingNumber += minNumber
   }
 
   return {
