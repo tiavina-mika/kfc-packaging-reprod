@@ -29,14 +29,14 @@ const styles = {
 type Props = {
   packagings?: Record<string, any>[]
   expectedPackagingNumber?: number
-  packagingForecastNumber?: number
+  totalRealizableNumber?: number
   setFieldValue?: (field: string, value: any) => void
   totalRealizedNumber?: number
 }
 const PRReprodPackagingsField = ({
   packagings = [],
   expectedPackagingNumber = 0,
-  packagingForecastNumber = 0,
+  totalRealizableNumber = 0,
   totalRealizedNumber = 0
 }: Props) => {
 	return (
@@ -113,7 +113,7 @@ const PRReprodPackagingsField = ({
             <PETableCell_V2
               sx={{ ...styles.borders.bottomRight, color: COLORS.PRIMARY_COLOR, }}
             >
-              {packagingForecastNumber || "-"}
+              {totalRealizableNumber || "-"}
             </PETableCell_V2>
           </TableRow>
         </TableBody>
