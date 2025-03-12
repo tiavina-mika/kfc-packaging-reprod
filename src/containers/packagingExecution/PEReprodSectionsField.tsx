@@ -5,9 +5,11 @@ import Typography from "@mui/material/Typography"
 import { convertKilosIntoGrams, roundNumber } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
 import { useState } from "react"
+import { calculateGlobalPackagingForecastNumber, calculatePackagingForecastNumberBySection, calculatePackagingsForecastNumber } from "../../utils/packagingExecutionUtils"
 
 type Props = {
-	sections?: Record<string, any>[]
+	sections: Record<string, any>[]
+	packagings: Record<string, any>[]
 	packagingForecastNumber?: number
 	setFieldValue: (field: string, value: any) => void
 	setFieldTouched: (field: string) => void
@@ -17,6 +19,7 @@ type Props = {
 }
 const PEReprodSectionsField = ({
 	sections = [],
+	packagings = [],
 	errors,
 	packagingForecastNumber,
 	setFieldValue,
@@ -30,7 +33,19 @@ const PEReprodSectionsField = ({
 	}
 
 	const handleChangeSectionRealWeight = (value: any, index: number) => {
-		setFieldValue(`sections[${+index}].realWeight`, value)
+		setFieldValue(`sections[${index}].realWeight`, value)
+
+		const forecastNumber = calculatePackagingForecastNumberBySection(sections[index], value)
+		setFieldValue(`sections[${index}].packagingForecastNumber`, forecastNumber)
+
+		const section = { ...sections[index], realWeight: value, forecastWaste: forecastNumber }
+		const copiedSections = [...sections]
+		copiedSections[index] = section
+		const globalPackagingForecastNumber = calculateGlobalPackagingForecastNumber(copiedSections)
+		setFieldValue("packagingForecastNumber", globalPackagingForecastNumber)
+
+		const updatedPackagings = calculatePackagingsForecastNumber(packagings, globalPackagingForecastNumber)
+		setFieldValue("packagings", updatedPackagings)
 	}
 
 	const formatCellValue = (value1: any = "", value2: any = "", unit = "", style = {}) => {
