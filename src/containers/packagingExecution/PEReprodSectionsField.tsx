@@ -29,12 +29,8 @@ const PEReprodSectionsField = ({
 		setFocusedFieldIndex(index)
 	}
 
-	const renderKiloToGrams = (value: number = 0) => {
-		return roundNumber(convertKilosIntoGrams(value), 0)
-	}
-
-	const handleChangeSectionRealWeight = (value: any) => (index: number) => {
-		setFieldValue(`sections[${index}].realWeight`, value)
+	const handleChangeSectionRealWeight = (value: any, index: number) => {
+		setFieldValue(`sections[${+index}].realWeight`, value)
 	}
 
 	const formatCellValue = (value1: any = "", value2: any = "", unit = "", style = {}) => {
@@ -95,9 +91,9 @@ const PEReprodSectionsField = ({
 						key={index}
 						// editable={editable}
 						section={currentSection}
-						index={index}
+						sectionIndex={index}
 						setFieldTouched={setFieldTouched} 
-						onChangeSectionRealWeight={handleChangeSectionRealWeight(index)}
+						onChangeSectionRealWeight={handleChangeSectionRealWeight}
 						formatCellValue={formatCellValue}
 						onChangeFocusedFieldIndex={handleChangeFocusedIndex}
 						errors={errors}
