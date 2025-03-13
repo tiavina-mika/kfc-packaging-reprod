@@ -106,6 +106,7 @@ const PEReprodDialogForm = ({
                                                 totalRealizableNumber={values.totalRealizableNumber}
                                                 setFieldValue={setFieldValue}
                                                 totalRealizedNumber={values.totalRealizedNumber}
+                                                status={packagingExecution.status}
                                             />
                                             {errors?.packagings && typeof errors.packagings === 'string' && (
                                                 <FormHelperText error>{errors.packagings}</FormHelperText>
