@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react"
 import { Form, Formik } from "formik"
+import CloseIcon from '@mui/icons-material/Close'
 import {
     Button,
     Dialog,
@@ -10,6 +11,7 @@ import {
     Stack,
     DialogTitle,
     Alert,
+    IconButton,
 } from "@mui/material"
 import PRReprodPackagingsField from "./PRReprodPackagingsField"
 import PEReprodSectionsField from "./PEReprodSectionsField"
@@ -29,6 +31,7 @@ const sx = {
         fontStyle: 'normal',
         fontWeight: 500,
         lineHeight: 1.33,
+        p: 0
     },
     dialogContent: {
         p: 0,
@@ -36,6 +39,7 @@ const sx = {
         display: 'flex',
         flexDirection: 'column',
         gap: "32px",
+        marginTop: "32px"
     },
     dialogActions: {
         display: 'flex',
@@ -82,9 +86,16 @@ const PEReprodDialogForm = ({
 
     return (
         <Dialog open={open} onClose={onClose} scroll="body" sx={sx.dialog}>
-            <DialogTitle>
+            <DialogTitle sx={sx.dialogTitle}>
                 {packagingExecution?.uniqueCode} - {packagingExecution?.recipeName}
             </DialogTitle>
+            <IconButton
+                aria-label="close"
+                onClick={onClose}
+                sx={{ position: 'absolute', top: 8, right: 8 }}
+            >
+                <CloseIcon />
+            </IconButton>
             <DialogContent sx={sx.dialogContent}>
                 <Alert severity="warning">
                     La quantité restante est insuffisante pour produire le nombre requis de barquettes <b>operculées</b>. Vous devez relancer une production afin d'atteindre la quantité théorique.
