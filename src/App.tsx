@@ -6,9 +6,9 @@ import { packagingExecution, proposedWeightsBySections } from './utils/data';
 import Footer from './containers/Footer';
 
 const App = () => {
-  const [isOpenPackagingsDialog, setIsOpenPackagingsDialog] = useState<boolean>(false)
+  const [isOpenReprodDialog, setIsOpenReprodDialog] = useState<boolean>(false)
 
-  const toggleOpenRecipeDialog = () => setIsOpenPackagingsDialog(!isOpenPackagingsDialog)
+  const toggleOpenReprodDialog = () => setIsOpenReprodDialog(!isOpenReprodDialog)
 
   const handleSubmitReprod = (values: Record<string, any>) => {
     console.log('handleSubmitReprod', values)
@@ -35,14 +35,14 @@ const App = () => {
       </Typography>
       {/* content */}
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: "column",  alignItems: 'center', gap: '16px', p: 6, mt: 1 }}>
-        <Button onClick={toggleOpenRecipeDialog} variant="contained">Faire une contre-pesée/reprod</Button>
+        <Button onClick={toggleOpenReprodDialog} variant="contained">Faire une contre-pesée/reprod</Button>
       </Box>
 
       {/* 2. sections modal */}
       <PEReprodPackagingsDialogForm
         packagingExecution={packagingExecution}
-        open={isOpenPackagingsDialog}
-        onClose={toggleOpenRecipeDialog}
+        open={isOpenReprodDialog}
+        onClose={toggleOpenReprodDialog}
         onSubmit={handleSubmitReprod}
         proposedWeightsBySections={proposedWeightsBySections}
       />
