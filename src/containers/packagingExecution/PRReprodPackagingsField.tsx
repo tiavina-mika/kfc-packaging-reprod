@@ -52,6 +52,8 @@ const PRReprodPackagingsField = ({
   totalRealizableNumber = 0,
   totalRealizedNumber = 0
 }: Props) => {
+  const isOneLine = status !== "IN_PROGRESS"
+
 	return (
     <PEReprodTableContainer
       icon="packagingNumber.svg"
@@ -77,20 +79,21 @@ const PRReprodPackagingsField = ({
         </TableHead>
         <TableBody>
           <TableRow>
-            <PETableCell_V2 sx={ styles.borders.left }>
+            <PETableCell_V2 sx={{ ...styles.borders.left, ...(isOneLine ? styles.borders.withBorderBottom : {}) }}>
               Prévisionnelle/ Théorique
             </PETableCell_V2>
               {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
-                  <PETableCell_V2 sx={styles.borders.noBorder}>
+                  <PETableCell_V2 sx={{ ...styles.borders.noBorder, ...(isOneLine ? styles.borders.withBorderBottom : {}) }}>
                     {currentPackaging.forecastNumber} / {currentPackaging.theoreticalNumber || "-"}
                   </PETableCell_V2>
                 </React.Fragment>
               ))}
-            <PETableCell_V2 sx={styles.borders.right}>
+            <PETableCell_V2 sx={{ ...styles.borders.right, ...(isOneLine ? styles.borders.withBorderBottom : {}) }}>
               {expectedPackagingNumber || "-"}
             </PETableCell_V2>
           </TableRow>
+          {/* display only for PE in progress */}
           {status === "IN_PROGRESS" && (
             <>
               <TableRow>
