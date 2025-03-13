@@ -2,7 +2,7 @@ import React from "react"
 import { TableBody, TableRow, TableHead } from "@mui/material"
 import { PETable, PETableCell_V2, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
 import { packagingNature } from "../../utils/utils"
-import { getOrderedPackagings } from "../../utils/packagingExecutionUtils"
+import { getOrderedPackagingsForReprod } from "../../utils/packagingExecutionUtils"
 import PEReprodTableContainer from "./PEReprodTableContainer"
 
 const styles = {
@@ -85,7 +85,7 @@ const PRReprodPackagingsField = ({
             <PETableCell_V2 sx={{ ...styles.borders.left, ...(isOneLine ? styles.borders.withBorderBottom : {}) }}>
               Prévisionnelle/ Théorique
             </PETableCell_V2>
-              {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
+              {getOrderedPackagingsForReprod(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
                   <PETableCell_V2 sx={{ ...styles.borders.noBorder, ...(isOneLine ? styles.borders.withBorderBottom : {}) }}>
                     {currentPackaging.forecastNumber} / {currentPackaging.theoreticalNumber || "-"}
@@ -121,7 +121,7 @@ const PRReprodPackagingsField = ({
                   Barquettes 
                   encore réalisables
                 </PETableCell_V2>
-                  {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
+                  {getOrderedPackagingsForReprod(packagings).map((currentPackaging: Record<string, any>, index: number) => (
                     <React.Fragment key={index}>
                       <PETableCell_V2 sx={{ ...styles.borders.noBorder, ...styles.borders.withBorderBottom }}>
                         {currentPackaging.realizableNumber || "-"}
