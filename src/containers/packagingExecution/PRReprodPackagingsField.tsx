@@ -43,8 +43,10 @@ type Props = {
   totalRealizableNumber?: number
   setFieldValue?: (field: string, value: any) => void
   totalRealizedNumber?: number
+  status: string
 }
 const PRReprodPackagingsField = ({
+  status,
   packagings = [],
   expectedPackagingNumber = 0,
   totalRealizableNumber = 0,
@@ -89,41 +91,45 @@ const PRReprodPackagingsField = ({
               {expectedPackagingNumber || "-"}
             </PETableCell_V2>
           </TableRow>
-          <TableRow>
-            <PETableCell_V2 sx={styles.borders.bottomLeft}>
-              Réalisées
-            </PETableCell_V2>
-              {packagings.map((currentPackaging: Record<string, any>, index: number) => (
-                <React.Fragment key={index}>
-                  <PETableCell_V2 sx={styles.borders.noBorder}>
-                    {currentPackaging.realizedNumber || "-"}
-                  </PETableCell_V2>
-                </React.Fragment>
-              ))}
-            <PETableCell_V2
-              sx={styles.borders.bottomRight}
-            >
-              {totalRealizedNumber || "-"}
-            </PETableCell_V2>
-          </TableRow>
-          <TableRow>
-            <PETableCell_V2 sx={{ ...styles.borders.left, ...styles.borders.withBorderBottom }}>
-              Barquettes 
-              encore réalisables
-            </PETableCell_V2>
-              {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
-                <React.Fragment key={index}>
-                  <PETableCell_V2 sx={{ ...styles.borders.noBorder, ...styles.borders.withBorderBottom }}>
-                    {currentPackaging.realizableNumber || "-"}
-                  </PETableCell_V2>
-                </React.Fragment>
-              ))}
-            <PETableCell_V2
-              sx={{ ...styles.borders.right, ...styles.borders.withBorderBottom }}
-            >
-              {totalRealizableNumber || "-"}
-            </PETableCell_V2>
-          </TableRow>
+          {status === "IN_PROGRESS" && (
+            <>
+              <TableRow>
+                <PETableCell_V2 sx={styles.borders.bottomLeft}>
+                  Réalisées
+                </PETableCell_V2>
+                  {packagings.map((currentPackaging: Record<string, any>, index: number) => (
+                    <React.Fragment key={index}>
+                      <PETableCell_V2 sx={styles.borders.noBorder}>
+                        {currentPackaging.realizedNumber || "-"}
+                      </PETableCell_V2>
+                    </React.Fragment>
+                  ))}
+                <PETableCell_V2
+                  sx={styles.borders.bottomRight}
+                >
+                  {totalRealizedNumber || "-"}
+                </PETableCell_V2>
+              </TableRow>
+              <TableRow>
+                <PETableCell_V2 sx={{ ...styles.borders.left, ...styles.borders.withBorderBottom }}>
+                  Barquettes 
+                  encore réalisables
+                </PETableCell_V2>
+                  {getOrderedPackagings(packagings).map((currentPackaging: Record<string, any>, index: number) => (
+                    <React.Fragment key={index}>
+                      <PETableCell_V2 sx={{ ...styles.borders.noBorder, ...styles.borders.withBorderBottom }}>
+                        {currentPackaging.realizableNumber || "-"}
+                      </PETableCell_V2>
+                    </React.Fragment>
+                  ))}
+                <PETableCell_V2
+                  sx={{ ...styles.borders.right, ...styles.borders.withBorderBottom }}
+                >
+                  {totalRealizableNumber || "-"}
+                </PETableCell_V2>
+              </TableRow>
+            </>
+          )}
         </TableBody>
       </PETable>
     </PEReprodTableContainer>
