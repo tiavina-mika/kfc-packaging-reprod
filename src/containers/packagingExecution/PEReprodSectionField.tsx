@@ -5,9 +5,34 @@ import { convertKilosIntoGrams, roundNumber } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
 
 const styles = {
-	borders: {
-		left: { borderLeft: "1px solid #E6E6E6" },
-		right: { borderRight: "1px solid #E6E6E6", color: "unset" }
+  borders: {
+    left: {
+      borderLeft: "1px solid #E6E6E6",
+      borderBottom: "none",
+    },
+    right: { 
+      borderRight: "1px solid #E6E6E6",
+      borderBottom: "none",
+    },
+    bottomLeft: {
+      borderLeft: "1px solid #E6E6E6",
+      // borderBottom: "1px solid #E6E6E6",
+      borderBottom: "none",
+      borderRadius: "0 0 0 6px",
+    },
+    bottomRight: {
+      borderRight: "1px solid #E6E6E6",
+      // borderBottom: "1px solid #E6E6E6",
+      borderBottom: "none",
+      borderRadius: "0 0 6px 0",
+      fontWeight: "500",
+    },
+    noBorder: {
+      border: "none"
+    },
+    withBorderBottom: {
+      borderBottom: "1px solid #E6E6E6",
+    }
   },
 }
 
@@ -18,6 +43,7 @@ type Props = {
 	onChangeSectionRealWeight: (value: any, sectionIndex: number) => void
 	formatCellValue: (value1: any, value2: any, unit: string, style?: Record<string, any>) => any
 	errors: Record<string, any>
+	isLastItem?: boolean
 }
 const PEReprodSectionField = ({
 	section,
@@ -25,7 +51,8 @@ const PEReprodSectionField = ({
 	setFieldTouched,
 	onChangeSectionRealWeight,
 	formatCellValue,
-	errors
+	errors,
+	isLastItem = false
 }: Props) => {
 	const _renderKiloToGrams = (value: number) => {
 		return roundNumber(convertKilosIntoGrams(value), 0)
@@ -50,10 +77,10 @@ const PEReprodSectionField = ({
 
 	return (
 		<TableRow>
-			<PETableCell_V2 sx={styles.borders.left}>
+			<PETableCell_V2 sx={{ ...styles.borders.left, ...(isLastItem ? styles.borders.withBorderBottom : {}) }}>
 				{section.sectionName || "-"}
 			</PETableCell_V2>
-			<PETableCell_V2>
+			<PETableCell_V2 sx={isLastItem ? styles.borders.withBorderBottom : styles.borders.noBorder }>
 				{formatCellValue(
 					roundNumber((section.counterWeighing?.weight || 0), 1),
 					roundNumber((section.totalTheoreticalWeight || 0), 1),
@@ -61,7 +88,7 @@ const PEReprodSectionField = ({
 					{color: COLORS.DRAFT_GREY}
 				)}
 			</PETableCell_V2>
-			<PETableCell_V2>
+			<PETableCell_V2 sx={isLastItem ? styles.borders.withBorderBottom : styles.borders.noBorder }>
 				<Stack direction="row" alignItems="center" gap={1}>
 					{formatCellValue(
 						_renderKiloToGrams(section.cappedPackagingWeight) || 0, // calculated value 
@@ -71,7 +98,7 @@ const PEReprodSectionField = ({
 					)}
 				</Stack>
 			</PETableCell_V2>
-			<PETableCell_V2>
+			<PETableCell_V2 sx={{ ...styles.borders.right, ...(isLastItem ? styles.borders.withBorderBottom : {}) }}>
 					<Stack direction="row" alignItems="center" gap={1}>
 						<PETextField
 							name={`sections[${+sectionIndex}].realWeight`}
@@ -84,22 +111,12 @@ const PEReprodSectionField = ({
 						/>
 						<span style={{color:COLORS.DRAFT_GREY}}> g</span>
 					</Stack>
-			{/* <FormikErrorMessage name={`sections[${sectionIndex}].realWeight`} /> */}
 			{(errors as any)?.sections?.[sectionIndex]?.realWeight && (
 				<FormHelperText error>
 					{(errors as any).sections[sectionIndex].realWeight}
 				</FormHelperText>
 			)}
 			</PETableCell_V2>
-			{/* <PETableCell_V2 
-				sx={{ ...styles.borders.right, color: COLORS.BLACK800 }}
-			>
-				{formatCellValue(
-					roundNumber(section.forecastWaste || 0, 1),
-					null,
-					"kg",
-				)}
-			</PETableCell_V2> */}
 		</TableRow>
 	)
 }
