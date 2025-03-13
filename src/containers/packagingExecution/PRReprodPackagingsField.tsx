@@ -35,6 +35,9 @@ const styles = {
       borderBottom: "1px solid #E6E6E6",
     }
   },
+  headCell: {
+    borderBottom: "none"
+  }
 }
 
 type Props = {
@@ -62,17 +65,17 @@ const PRReprodPackagingsField = ({
       <PETable>
         <TableHead>
           <TableRow>
-            <PETableHeaderCell_V2>
+            <PETableHeaderCell_V2 sx={styles.headCell}>
               Estimation
             </PETableHeaderCell_V2>
               {packagings.map((currentPackaging: Record<string, any>, index: number) => (
                 <React.Fragment key={index}>
-                  <PETableHeaderCell_V2>
+                  <PETableHeaderCell_V2 sx={styles.headCell}>
                     {packagingNature.find((nature) => nature.value === currentPackaging.type)?.label}
                   </PETableHeaderCell_V2>
                 </React.Fragment>
               ))}
-            <PETableHeaderCell_V2>
+            <PETableHeaderCell_V2 sx={styles.headCell}>
               Total
             </PETableHeaderCell_V2>
           </TableRow>
