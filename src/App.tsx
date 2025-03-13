@@ -5,7 +5,7 @@ import PEReprodPackagingsDialogForm from './containers/packagingExecution/PERepr
 import { packagingExecution, proposedWeightsBySections } from './utils/data';
 
 const App = () => {
-  const [isOpenPackagingsDialog, setIsOpenPackagingsDialog] = useState(true)
+  const [isOpenPackagingsDialog, setIsOpenPackagingsDialog] = useState<boolean>(false)
 
   const toggleOpenRecipeDialog = () => setIsOpenPackagingsDialog(!isOpenPackagingsDialog)
 
