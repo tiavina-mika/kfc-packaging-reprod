@@ -38,8 +38,6 @@ const styles = {
   }
 }
 
-
-
 type Props = {
   packagings?: Record<string, any>[]
   expectedPackagingNumber?: number
