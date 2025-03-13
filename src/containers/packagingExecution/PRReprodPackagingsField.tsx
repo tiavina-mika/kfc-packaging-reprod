@@ -2,7 +2,6 @@ import React from "react"
 import { TableBody, TableRow, TableHead } from "@mui/material"
 import { PETable, PETableCell_V2, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
 import { packagingNature } from "../../utils/utils"
-import { COLORS } from "../../utils/constants"
 import { getOrderedPackagings } from "../../utils/packagingExecutionUtils"
 import PEReprodTableContainer from "./PEReprodTableContainer"
 
@@ -36,12 +35,6 @@ const styles = {
       borderBottom: "1px solid #E6E6E6",
     }
   },
-  title: {
-    fontSize: "14px",
-    lineHeight: 1.571,
-    color: COLORS.BLACK800,
-    fontWeight: "500",
-  }
 }
 
 type Props = {
