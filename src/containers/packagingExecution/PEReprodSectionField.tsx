@@ -3,6 +3,7 @@ import { TableRow, Stack, FormHelperText, Typography } from "@mui/material"
 import { PETableCell_V2, PETextField } from "./StyledPackagingExecutionPreviewComponents"
 import { convertKilosIntoGrams, roundNumber } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
+import PECellValue from "./PECellValue"
 
 const styles = {
   borders: {
@@ -41,7 +42,6 @@ type Props = {
 	sectionIndex: number
 	setFieldTouched: (field: string) => void
 	onChangeSectionRealWeight: (value: any, sectionIndex: number) => void
-	formatCellValue: (value1: any, value2: any, unit: string, style?: Record<string, any>) => any
 	errors: Record<string, any>
 	isLastItem?: boolean
 }
@@ -50,7 +50,6 @@ const PEReprodSectionField = ({
 	sectionIndex,
 	setFieldTouched,
 	onChangeSectionRealWeight,
-	formatCellValue,
 	errors,
 	isLastItem = false
 }: Props) => {
@@ -81,21 +80,20 @@ const PEReprodSectionField = ({
 				{section.sectionName || "-"}
 			</PETableCell_V2>
 			<PETableCell_V2 sx={isLastItem ? styles.borders.withBorderBottom : styles.borders.noBorder }>
-				{formatCellValue(
-					roundNumber((section.counterWeighing?.weight || 0), 1),
-					roundNumber((section.totalTheoreticalWeight || 0), 1),
-					"kg",
-					{color: COLORS.DRAFT_GREY}
-				)}
+				<PECellValue
+					value1={roundNumber((section.counterWeighing?.weight || 0), 1)}
+					value2={roundNumber((section.totalTheoreticalWeight || 0), 1)}
+					unit="kg"
+					style={{ color: COLORS.DRAFT_GREY }}
+				/>
 			</PETableCell_V2>
 			<PETableCell_V2 sx={isLastItem ? styles.borders.withBorderBottom : styles.borders.noBorder }>
 				<Stack direction="row" alignItems="center" gap={1}>
-					{formatCellValue(
-						_renderKiloToGrams(section.cappedPackagingWeight) || 0, // calculated value 
-						null,
-						"g",
-						{color: COLORS.DRAFT_GREY}
-					)}
+					<PECellValue
+						value1={_renderKiloToGrams(section.cappedPackagingWeight) || 0}
+						unit="g"
+						style={{ color: COLORS.DRAFT_GREY }}
+					/>
 				</Stack>
 			</PETableCell_V2>
 			<PETableCell_V2 sx={{ ...styles.borders.right, ...(isLastItem ? styles.borders.withBorderBottom : {}) }}>
