@@ -38,7 +38,6 @@ const App = () => {
         <Button onClick={toggleOpenReprodDialog} variant="contained">Faire une contre-pesée/reprod</Button>
       </Box>
 
-      {/* 2. sections modal */}
       <PEReprodPackagingsDialogForm
         packagingExecution={packagingExecution}
         open={isOpenReprodDialog}
