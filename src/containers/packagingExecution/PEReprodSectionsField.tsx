@@ -74,7 +74,7 @@ const PEReprodSectionsField = ({
         </Typography>
       </Stack>
 			<Typography sx={{fontSize:"16px", lineHeight:"24px", color:"#7C7C7C"}}>
-				Saisissez les quantités réelles des sections à barquetter
+				Saisissez les quantités à mettre en reprod pour les barquettes réemployables et jetables.
 			</Typography>
       <PETable>
         <TableHead>
