@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, WheelEvent } from "react"
-import { TableRow, Stack, FormHelperText } from "@mui/material"
+import { TableRow, Stack, FormHelperText, Typography } from "@mui/material"
 import { PETableCell_V2, PETextField } from "./StyledPackagingExecutionPreviewComponents"
 import { convertKilosIntoGrams, roundNumber } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
@@ -99,18 +99,18 @@ const PEReprodSectionField = ({
 				</Stack>
 			</PETableCell_V2>
 			<PETableCell_V2 sx={{ ...styles.borders.right, ...(isLastItem ? styles.borders.withBorderBottom : {}) }}>
-					<Stack direction="row" alignItems="center" gap={1}>
-						<PETextField
-							name={`sections[${+sectionIndex}].realWeight`}
-							value={section.realWeight}
-							variant="outlined"
-							onChange={handleChangeRealWeight}
-							type="number"
-							onWheel={handleOnWheel}
-							onKeyDown={handleOnKeyDown}
-						/>
-						<span style={{color:COLORS.DRAFT_GREY}}> g</span>
-					</Stack>
+				<Stack direction="row" alignItems="center" gap={1}>
+					<PETextField
+						name={`sections[${+sectionIndex}].realWeight`}
+						value={section.realWeight}
+						variant="outlined"
+						onChange={handleChangeRealWeight}
+						type="number"
+						onWheel={handleOnWheel}
+						onKeyDown={handleOnKeyDown}
+					/>
+					<Typography sx={{ color:COLORS.DRAFT_GREY }}> kg</Typography>
+				</Stack>
 			{(errors as any)?.sections?.[sectionIndex]?.realWeight && (
 				<FormHelperText error>
 					{(errors as any).sections[sectionIndex].realWeight}
