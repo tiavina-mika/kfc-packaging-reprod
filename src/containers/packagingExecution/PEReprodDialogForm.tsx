@@ -15,7 +15,7 @@ import {
 } from "@mui/material"
 import PRReprodPackagingsField from "./PRReprodPackagingsField"
 import PEReprodSectionsField from "./PEReprodSectionsField"
-import { formatPEReprodWeightsInitialValues } from "../../utils/packagingExecutionUtils"
+import { getPEReprodWeightsInitialValues } from "../../utils/packagingExecutionUtils"
 
 const sx = {
     dialog: {
@@ -103,7 +103,7 @@ const PEReprodDialogForm = ({
                 <Box ref={descriptionElementRef} tabIndex={-1}>
                     <Formik
                         innerRef={formikRef}
-                        initialValues={formatPEReprodWeightsInitialValues(packagingExecution, proposedWeightsBySections, packagingExecution.tempRealNumber)}
+                        initialValues={getPEReprodWeightsInitialValues(packagingExecution, proposedWeightsBySections, packagingExecution.tempRealNumber)}
                         // validationSchema={schema}
                         onSubmit={_handleSubmit}
                     >
