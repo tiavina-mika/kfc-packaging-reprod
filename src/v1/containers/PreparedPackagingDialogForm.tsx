@@ -11,6 +11,7 @@ import {
     DialogTitle,
 } from "@mui/material"
 import CloseIcon from '@mui/icons-material/Close'
+import CloseIcon from '@mui/icons-material/Close'
 import WeightInput from "./WeightInput"
 import { COLORS } from "../utils/constants"
 
