@@ -36,7 +36,7 @@ const sx = {
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        gap: '16px',
+        gap: "32px",
     },
     dialogActions: {
         display: 'flex',
