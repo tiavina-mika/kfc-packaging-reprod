@@ -5,7 +5,7 @@ export const getOrderedPackagingsForReprod = (packagings: Record<string, any>[] 
   return packagings.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
 }
 
-const distributePackagingNumbers = (packagings: Record<string, any>[], initialNumber: number, field: string) => {
+const distributePackagingNumbersForReprod = (packagings: Record<string, any>[], initialNumber: number, field: string) => {
   // 1. Order packagings by type (CAPPED, REUSABLE, DISPOSABLE)
   const orderPackagins = getOrderedPackagingsForReprod(packagings) || []
 
@@ -38,7 +38,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
   proposedWeightsBySections: Record<string, any> = {},
   tempRealNumber = 0
 ) => {
-  const { newPackagings, totalPackagingNumber: totalRealizedNumber } = distributePackagingNumbers(packagingExecution.packagings, tempRealNumber, "realizedNumber")
+  const { newPackagings, totalPackagingNumber: totalRealizedNumber } = distributePackagingNumbersForReprod(packagingExecution.packagings, tempRealNumber, "realizedNumber")
 
   const cappedPackaging = newPackagings.find((packaging) => packaging.type === "CAPPED")
   const cappedPackagingWeight = cappedPackaging ? (cappedPackaging.realizedNumber - cappedPackaging.theoreticalNumber) : 0
@@ -64,7 +64,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
   }
 
   const minRealizableNumber = Math.min(...realizableNumbers)
-  const { newPackagings: updatedNewPackagings, totalPackagingNumber: totalRealizableNumber } = distributePackagingNumbers(newPackagings, minRealizableNumber, "realizableNumber")
+  const { newPackagings: updatedNewPackagings, totalPackagingNumber: totalRealizableNumber } = distributePackagingNumbersForReprod(newPackagings, minRealizableNumber, "realizableNumber")
 
   return {
     ...packagingExecution,
