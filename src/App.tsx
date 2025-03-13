@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
-import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
+import { AppBar, Avatar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
 import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm';
 import { packagingExecution, proposedWeightsBySections } from './utils/data';
 import Footer from './containers/Footer';
@@ -23,6 +23,7 @@ const App = () => {
           <Box sx={{ width: '140px' }}>
             <img alt="foodcheri" src="/logo.svg" />
           </Box>
+          <Avatar alt="Mika" src="https://avatars.githubusercontent.com/u/42656064?s=400&u=d2766a32fce7dbe6cd9727a1126ef900b2dd9ce1&v=4" />
         </Toolbar>
       </AppBar>
       {/* page title */}
