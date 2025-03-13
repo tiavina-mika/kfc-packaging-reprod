@@ -86,59 +86,21 @@ const PEReprodSectionsField = ({
             <PETableHeaderCell_V2 align="left">
 							À reproduire en réemployable et jetable
             </PETableHeaderCell_V2>
-            {/* <PETableHeaderCell_V2 align="left">
-              Restes
-            </PETableHeaderCell_V2> */}
           </TableRow>
         </TableHead>
         <TableBody>
-
-				{sections.map((currentSection, index) => (
-					<PEReprodSectionField
-						key={index}
-						// editable={editable}
-						section={currentSection}
-						sectionIndex={index}
-						setFieldTouched={setFieldTouched} 
-						onChangeSectionRealWeight={handleChangeSectionRealWeight}
-						formatCellValue={formatCellValue}
-						errors={errors}
-					/>
-				))}
-
-				{/* <TableRow>
-					<PETotalTableCell_V2>
-						Total
-					</PETotalTableCell_V2>
-					<PETotalTableCell_V2>
-						{formatCellValue(
-							roundNumber(sections.reduce((acc, section) => acc + (section.initialProductionWeight), 0), 1),
-							roundNumber(sections.reduce((acc, section) => acc + (section.totalTheoreticalWeight), 0), 1),
-							"kg"
-						)}
-					</PETotalTableCell_V2>
-					<PETotalTableCell_V2>
-						{formatCellValue(
-            renderKiloToGrams(sections.reduce((acc, section) => acc + (section.recipeSectionWeight), 0)),
-						null,
-            "g"
-						)}
-					</PETotalTableCell_V2>
-					<PETotalTableCell_V2>
-						{formatCellValue(
-            renderKiloToGrams(sections.reduce((acc, section) => acc + (section.realWeight || 0), 0)),
-						null,
-            "g"
-						)}
-					</PETotalTableCell_V2>
-					<PETotalTableCell_V2>
-						{formatCellValue(
-            roundNumber(sections.reduce((acc, section) => acc + (section.forecastWaste || 0), 0), 1),
-						null,
-            "kg"
-						)}
-					</PETotalTableCell_V2>
-				</TableRow> */}
+					{sections.map((currentSection, index) => (
+						<PEReprodSectionField
+							key={index}
+							section={currentSection}
+							sectionIndex={index}
+							setFieldTouched={setFieldTouched} 
+							onChangeSectionRealWeight={handleChangeSectionRealWeight}
+							formatCellValue={formatCellValue}
+							errors={errors}
+							isLastItem={index === sections.length - 1}
+						/>
+					))}
         </TableBody>
       </PETable>
     </PEReprodTableContainer>
