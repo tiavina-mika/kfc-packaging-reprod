@@ -1,4 +1,4 @@
-import { TableHead, TableBody, TableRow, Stack } from "@mui/material"
+import { TableHead, TableBody, TableRow } from "@mui/material"
 import { PETable, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
 import PEReprodSectionField from "./PEReprodSectionField"
 import { calculateGlobalPackagingForecastNumber, calculatePackagingForecastNumberBySection, calculatePackagingsForecastNumber } from "../../utils/packagingExecutionUtils"
@@ -51,25 +51,6 @@ const PEReprodSectionsField = ({
 		setFieldValue("packagings", updatedPackagings)
 	}
 
-	const formatCellValue = (value1: any = "", value2: any = "", unit = "", style = {}) => {
-    if (!value1 && !value2) {
-      return "-"
-    }
-    if (value1 && value2) {
-        return (
-            <Stack gap={1} direction="row" alignItems="center">
-                {value1} / {value2} <span style={style}>{unit}</span>
-            </Stack>
-        )
-    }
-    return (
-        <Stack gap={1} direction="row" alignItems="center">
-            {value1 || value2} <span style={style}>{unit}</span>
-        </Stack>
-    )
-	}
-
-
 	return (
 		<PEReprodTableContainer
 			icon="distributionBySections.svg"
@@ -102,7 +83,6 @@ const PEReprodSectionsField = ({
 							sectionIndex={index}
 							setFieldTouched={setFieldTouched} 
 							onChangeSectionRealWeight={handleChangeSectionRealWeight}
-							formatCellValue={formatCellValue}
 							errors={errors}
 							isLastItem={index === sections.length - 1}
 						/>
