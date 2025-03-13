@@ -87,7 +87,7 @@ const PEReprodDialogForm = ({
             </DialogTitle>
             <DialogContent sx={sx.dialogContent}>
                 <Alert severity="warning">
-                    La quantité restante est insuffisante pour produire le nombre requis de barquettes operculées. Vous devez relancer une production afin d'atteindre la quantité théorique.
+                    La quantité restante est insuffisante pour produire le nombre requis de barquettes <b>operculées</b>. Vous devez relancer une production afin d'atteindre la quantité théorique.
                 </Alert>
                 <Box ref={descriptionElementRef} tabIndex={-1}>
                     <Formik
