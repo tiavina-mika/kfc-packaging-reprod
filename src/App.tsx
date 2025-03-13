@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
 import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm';
 import { packagingExecution, proposedWeightsBySections } from './utils/data';
+import Footer from './containers/Footer';
 
 const App = () => {
   const [isOpenPackagingsDialog, setIsOpenPackagingsDialog] = useState<boolean>(false)
@@ -44,6 +45,7 @@ const App = () => {
         onSubmit={handleSubmitReprod}
         proposedWeightsBySections={proposedWeightsBySections}
       />
+      <Footer />
     </Box>
   );
 }
