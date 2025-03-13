@@ -1,13 +1,13 @@
 import { convertGramsIntoKilos, convertKilosIntoGrams } from "./utils"
 
-export const getOrderedPackagings = (packagings: Record<string, any>[] = []) => {
+export const getOrderedPackagingsForReprod = (packagings: Record<string, any>[] = []) => {
   const order = ["CAPPED", "REUSABLE", "DISPOSABLE"];
   return packagings.sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
 }
 
 const distributePackagingNumbers = (packagings: Record<string, any>[], initialNumber: number, field: string) => {
   // 1. Order packagings by type (CAPPED, REUSABLE, DISPOSABLE)
-  const orderPackagins = getOrderedPackagings(packagings) || []
+  const orderPackagins = getOrderedPackagingsForReprod(packagings) || []
 
   const newPackagings: Record<string, any>[] = []
   let totalPackagingNumber = 0
