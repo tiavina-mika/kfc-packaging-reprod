@@ -32,7 +32,7 @@ const styles = {
     },
     withBorderBottom: {
       borderBottom: "1px solid #E6E6E6",
-    }
+    },
   },
 }
 
