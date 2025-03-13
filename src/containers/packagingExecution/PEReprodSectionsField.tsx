@@ -31,7 +31,7 @@ const PEReprodSectionsField = ({
 		setFieldValue(`sections[${index}].packagingForecastNumber`, forecastNumber)
 
 		// 3. Calculate the global packaging
-		const section = { ...sections[index], realWeight: value, forecastWaste: forecastNumber }
+		const section = { ...sections[index], realWeight: value, packagingForecastNumber: forecastNumber }
 		const copiedSections = [...sections]
 		copiedSections[index] = section
 		const globalPackagingForecastNumber = calculateGlobalPackagingForecastNumber(copiedSections)
