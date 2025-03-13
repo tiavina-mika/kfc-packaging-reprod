@@ -1,10 +1,10 @@
 import React from "react"
-import { TableBody, TableRow, TableHead, Stack } from "@mui/material"
-import Typography from "@mui/material/Typography"
+import { TableBody, TableRow, TableHead } from "@mui/material"
 import { PETable, PETableCell_V2, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
 import { packagingNature } from "../../utils/utils"
 import { COLORS } from "../../utils/constants"
 import { getOrderedPackagings } from "../../utils/packagingExecutionUtils"
+import PEReprodTableContainer from "./PEReprodTableContainer"
 
 const styles = {
   borders: {
@@ -35,6 +35,12 @@ const styles = {
     withBorderBottom: {
       borderBottom: "1px solid #E6E6E6",
     }
+  },
+  title: {
+    fontSize: "14px",
+    lineHeight: 1.571,
+    color: COLORS.BLACK800,
+    fontWeight: "500",
   }
 }
 
@@ -52,13 +58,10 @@ const PRReprodPackagingsField = ({
   totalRealizedNumber = 0
 }: Props) => {
 	return (
-    <Stack spacing={2} sx={{width:"100%"}}>
-      <Stack spacing={1} direction={"row"}>
-        <img src="/img/packagingExecutions/packagingNumber.svg" alt="Packaging Icon" />
-        <Typography variant="h6" sx={{fontSize: "14px", lineHeight: "22px", color: COLORS.BLACK800}}>
-          Nombre de barquettes
-        </Typography>
-      </Stack>
+    <PEReprodTableContainer
+      icon="packagingNumber.svg"
+      title="Nombre de barquettes"
+    >
       <PETable>
         <TableHead>
           <TableRow>
@@ -130,7 +133,7 @@ const PRReprodPackagingsField = ({
           </TableRow>
         </TableBody>
       </PETable>
-    </Stack>
+    </PEReprodTableContainer>
 	)
 }
 
