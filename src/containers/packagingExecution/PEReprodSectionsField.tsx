@@ -4,6 +4,12 @@ import PEReprodSectionField from "./PEReprodSectionField"
 import { calculateGlobalPackagingForecastNumber, calculatePackagingForecastNumberBySection, calculatePackagingsForecastNumber } from "../../utils/packagingExecutionUtils"
 import PEReprodTableContainer from "./PEReprodTableContainer"
 
+const sx = {
+	headCell: {
+		borderBottom: "none"
+	}
+}
+
 type Props = {
 	sections: Record<string, any>[]
 	packagings: Record<string, any>[]
@@ -73,17 +79,17 @@ const PEReprodSectionsField = ({
       <PETable>
         <TableHead>
           <TableRow>
-            <PETableHeaderCell_V2 align="left">
+            <PETableHeaderCell_V2 align="left" sx={sx.headCell}>
               Élements à barquetter
             </PETableHeaderCell_V2>
-            <PETableHeaderCell_V2 align="left">
+            <PETableHeaderCell_V2 align="left" sx={sx.headCell}>
 							Quantité pesée / Théorique
               {/* Quantité produite / estimée */}
             </PETableHeaderCell_V2>
-            <PETableHeaderCell_V2 align="left">
+            <PETableHeaderCell_V2 align="left" sx={sx.headCell}>
 							À reproduire en operculé
             </PETableHeaderCell_V2>
-            <PETableHeaderCell_V2 align="left">
+            <PETableHeaderCell_V2 align="left" sx={sx.headCell}>
 							À reproduire en réemployable et jetable
             </PETableHeaderCell_V2>
           </TableRow>
