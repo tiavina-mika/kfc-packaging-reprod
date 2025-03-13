@@ -50,7 +50,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
   for (const section of packagingExecution.sections) {
     sections.push({
       ...section,
-      realWeight: 0,
+      realWeight: section.realWeight !== undefined ? convertGramsIntoKilos(section.realWeight) : 0,
       // weight per section from data api
       proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
       forecastWaste: section.forecastWaste || 0,
@@ -78,7 +78,7 @@ export const formatPackagingExecutionWeightsInitialValues = (
 }
 
 export const calculatePackagingForecastNumberBySection = (section: Record<string, any>, realWeight = 1): number => {
-  const realWeightKilos = convertGramsIntoKilos(realWeight)
+  const realWeightKilos = realWeight
   const sectionProductionWeight = section.initialProductionWeight // already in kilos
   if (!sectionProductionWeight) return 0
 
