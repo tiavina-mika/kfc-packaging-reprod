@@ -41,6 +41,7 @@ const sx = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: "32px"
     },
 }
 
