@@ -32,7 +32,7 @@ const distributePackagingNumbersForReprod = (packagings: Record<string, any>[], 
   }
 }
 
-export const formatPackagingExecutionWeightsInitialValues = (
+export const formatPEReprodWeightsInitialValues = (
   packagingExecution: Record<string, any>,
   // from data api
   proposedWeightsBySections: Record<string, any> = {},
