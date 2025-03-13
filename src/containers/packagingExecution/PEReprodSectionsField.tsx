@@ -1,9 +1,8 @@
 import { TableHead, TableBody, TableRow, Stack } from "@mui/material"
 import { PETable, PETableHeaderCell_V2 } from "./StyledPackagingExecutionPreviewComponents"
 import PEReprodSectionField from "./PEReprodSectionField"
-import Typography from "@mui/material/Typography"
-import { COLORS } from "../../utils/constants"
 import { calculateGlobalPackagingForecastNumber, calculatePackagingForecastNumberBySection, calculatePackagingsForecastNumber } from "../../utils/packagingExecutionUtils"
+import PEReprodTableContainer from "./PEReprodTableContainer"
 
 type Props = {
 	sections: Record<string, any>[]
@@ -66,16 +65,11 @@ const PEReprodSectionsField = ({
 
 
 	return (
-    <Stack spacing={2} sx={{width:"100%"}}>
-      <Stack spacing={1} direction={"row"}>
-        <img src="/img/packagingExecutions/distributionBySections.svg" alt="Packaging Icon" />
-        <Typography variant="h6" sx={{fontSize:"14px", lineHeight:"22px", color: COLORS.BLACK800}}>
-          Répartition par sections
-        </Typography>
-      </Stack>
-			<Typography sx={{fontSize:"16px", lineHeight:"24px", color:"#7C7C7C"}}>
-				Saisissez les quantités à mettre en reprod pour les barquettes réemployables et jetables.
-			</Typography>
+		<PEReprodTableContainer
+			icon="distributionBySections.svg"
+			title="Répartition par sections"
+			description="Saisissez les quantités à mettre en reprod pour les barquettes réemployables et jetables."
+		>
       <PETable>
         <TableHead>
           <TableRow>
@@ -147,7 +141,8 @@ const PEReprodSectionsField = ({
 				</TableRow> */}
         </TableBody>
       </PETable>
-    </Stack>)
+    </PEReprodTableContainer>
+	)
 }
 
 
