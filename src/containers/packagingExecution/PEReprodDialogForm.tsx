@@ -25,7 +25,6 @@ const sx = {
     },
     dialogTitle: {
         color: '#262626',
-        fontFamily: 'Roboto',
         fontSize: 24,
         fontStyle: 'normal',
         fontWeight: 500,
