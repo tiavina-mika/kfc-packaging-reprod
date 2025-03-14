@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import { AppBar, Avatar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
 import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm';
-import { packagingExecution, proposedWeightsBySections } from './utils/data';
+import { packagingExecution } from './utils/data';
 import Footer from './containers/Footer';
 
 const App = () => {
@@ -43,7 +43,6 @@ const App = () => {
         open={isOpenReprodDialog}
         onClose={toggleOpenReprodDialog}
         onSubmit={handleSubmitReprod}
-        proposedWeightsBySections={proposedWeightsBySections}
       />
       <Footer />
     </Box>
