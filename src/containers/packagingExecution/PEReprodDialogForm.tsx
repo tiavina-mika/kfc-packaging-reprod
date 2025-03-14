@@ -54,14 +54,12 @@ type Props = {
     open: boolean
     onSubmit: (values: Record<string, any>) => void
     packagingExecution: Record<string, any> | null
-    proposedWeightsBySections: Record<string, any>
 }
 const PEReprodDialogForm = ({
     onClose,
     open,
     onSubmit,
     packagingExecution,
-    proposedWeightsBySections
 }: Props) => {
     const formikRef = useRef(null)
     const descriptionElementRef = useRef<HTMLElement>(null);
@@ -103,7 +101,10 @@ const PEReprodDialogForm = ({
                 <Box ref={descriptionElementRef} tabIndex={-1}>
                     <Formik
                         innerRef={formikRef}
-                        initialValues={getPEReprodFormInitialValues(packagingExecution, proposedWeightsBySections, packagingExecution.tempRealNumber)}
+                        initialValues={getPEReprodFormInitialValues(
+                            packagingExecution,
+                            packagingExecution.realizedNumber
+                        )}
                         // validationSchema={schema}
                         onSubmit={_handleSubmit}
                     >
