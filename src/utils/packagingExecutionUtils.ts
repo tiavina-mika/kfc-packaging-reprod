@@ -35,10 +35,14 @@ const distributePackagingNumbersForReprod = (packagings: Record<string, any>[], 
 export const getPEReprodFormInitialValues = (
   packagingExecution: Record<string, any>,
   // from data api
-  proposedWeightsBySections: Record<string, any> = {},
-  tempRealNumber = 0
+  inProgressRealizedNumber = 0
 ) => {
-  const { newPackagings, totalPackagingNumber: totalRealizedNumber } = distributePackagingNumbersForReprod(packagingExecution.packagings, tempRealNumber, "realizedNumber")
+  // realized number is only for PE in progress
+  const { newPackagings, totalPackagingNumber: totalRealizedNumber } = distributePackagingNumbersForReprod(
+    packagingExecution.packagings,
+    inProgressRealizedNumber,
+    "realizedNumber"
+  )
 
   const cappedPackaging = newPackagings.find((packaging) => packaging.type === "CAPPED")
   const cappedPackagingWeight = cappedPackaging ? (cappedPackaging.realizedNumber - cappedPackaging.theoreticalNumber) : 0
@@ -52,9 +56,8 @@ export const getPEReprodFormInitialValues = (
       ...section,
       realWeight: section.realWeight !== undefined ? convertGramsIntoKilos(section.realWeight) : 0,
       // weight per section from data api
-      proposedWeight: proposedWeightsBySections[section.section.objectId] || 0,
+      proposedWeight: (section.counterWeight?.weight) || 0,
       forecastWaste: section.forecastWaste || 0,
-      // 
       cappedPackagingWeight,
       packagingForecastNumber: Infinity // won't be saved in db for display only and to ease waste calculations
     })
