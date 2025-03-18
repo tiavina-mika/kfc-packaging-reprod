@@ -51,13 +51,12 @@ const hasSectionNoRealWeight = (sections: Record<string, any> = []) => {
 const formatSections = (sections: Record<string, any> = []) => {
     if (hasSectionNoRealWeight(sections)) {
         const sectionWithNoRealWeight = sections.find((section: Record<string, any>) => section.realWeight === 0)
-        if (sectionWithNoRealWeight) {
-            return `de ${sectionWithNoRealWeight.sectionName}`
-        }
+        return sectionWithNoRealWeight ? `de ${sectionWithNoRealWeight.sectionName}` : ""
     }
+
     return sections.map((section: Record<string, any>, index: number) => {
-        const isLast = index === sections.length - 1;
-        return `${section.realWeight} kg de ${section.sectionName} ${isLast ? '' : ' et '}`;
+        const separator = index === sections.length - 1 ? '' : (sections.length > 2 ? ', ' : ' et ');
+        return `${section.realWeight} kg de ${section.sectionName}${separator}`;
     }).join("")
 }
 
