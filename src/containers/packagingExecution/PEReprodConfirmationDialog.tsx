@@ -6,7 +6,7 @@ import {
     Typography,
     styled,
 } from "@mui/material"
-import { COLORS } from "../../utils/constants";
+import { COLORS } from "../../utils/constants"
 
 const StyledValue = styled("span")({
     fontWeight: 600
@@ -48,15 +48,15 @@ const hasSectionNoRealWeight = (sections: Record<string, any> = []) => {
     return sections.some((section: Record<string, any>) => section.realWeight === 0)
 }
 
-const formatSections = (sections: Record<string, any> = []) => {
+const formatSections = (sections: Record<string, any>[] = []) => {
     if (hasSectionNoRealWeight(sections)) {
         const sectionWithNoRealWeight = sections.find((section: Record<string, any>) => section.realWeight === 0)
         return sectionWithNoRealWeight ? `de ${sectionWithNoRealWeight.sectionName}` : ""
     }
 
     return sections.map((section: Record<string, any>, index: number) => {
-        const separator = index === sections.length - 1 ? '' : (sections.length > 2 ? ', ' : ' et ');
-        return `${section.realWeight} kg de ${section.sectionName}${separator}`;
+        const separator = index === sections.length - 1 ? '' : (sections.length > 2 ? ', ' : ' et ')
+        return `${section.realWeight} kg de ${section.sectionName}${separator}`
     }).join("")
 }
 
