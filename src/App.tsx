@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import Button from '@mui/material/Button';
-import { AppBar, Avatar, Box, CssBaseline, Toolbar, Typography } from '@mui/material';
-import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm';
-import { packagingExecution } from './utils/data';
-import Footer from './containers/Footer';
-import PEReprodConfirmationDialog from './containers/packagingExecution/PEReprodConfirmationDialog';
+import { useState } from 'react'
+import Button from '@mui/material/Button'
+import { AppBar, Avatar, Box, CssBaseline, Toolbar, Typography } from '@mui/material'
+import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm'
+import { packagingExecution } from './utils/data'
+import Footer from './containers/Footer'
+import PEReprodConfirmationDialog from './containers/packagingExecution/PEReprodConfirmationDialog'
 
 const App = () => {
   const [isOpenReprodDialog, setIsOpenReprodDialog] = useState<boolean>(false)
@@ -16,6 +16,11 @@ const App = () => {
 
   const handleSubmitReprod = (values: Record<string, any>) => {
     setSectionsFormValues(values.sections)
+    toggleOpenReprodConfirmationDialog()
+  }
+
+  const handleConfirmReprod = () => {
+    console.log("Confirm reprod", sectionsFormValues)
     toggleOpenReprodConfirmationDialog()
   }
 
@@ -52,12 +57,12 @@ const App = () => {
       <PEReprodConfirmationDialog
         open={isOpenReprodConfirmationDialog}
         onClose={toggleOpenReprodConfirmationDialog}
-        onConfirm={() => console.log('confirm')}
+        onConfirm={handleConfirmReprod}
         sections={sectionsFormValues}
       />
       <Footer />
     </Box>
-  );
+  )
 }
 
 export default App
