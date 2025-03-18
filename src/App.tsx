@@ -4,14 +4,19 @@ import { AppBar, Avatar, Box, CssBaseline, Toolbar, Typography } from '@mui/mate
 import PEReprodPackagingsDialogForm from './containers/packagingExecution/PEReprodDialogForm';
 import { packagingExecution } from './utils/data';
 import Footer from './containers/Footer';
+import PEReprodConfirmationDialog from './containers/packagingExecution/PEReprodConfirmationDialog';
 
 const App = () => {
   const [isOpenReprodDialog, setIsOpenReprodDialog] = useState<boolean>(false)
+  const [isOpenReprodConfirmationDialog, setIsOpenReprodConfirmationDialog] = useState<boolean>(false)
+  const [sectionsFormValues, setSectionsFormValues] = useState<Record<string, any>[]>([])
 
   const toggleOpenReprodDialog = () => setIsOpenReprodDialog(!isOpenReprodDialog)
+  const toggleOpenReprodConfirmationDialog = () => setIsOpenReprodConfirmationDialog(!isOpenReprodConfirmationDialog)
 
   const handleSubmitReprod = (values: Record<string, any>) => {
-    console.log('handleSubmitReprod', values)
+    setSectionsFormValues(values.sections)
+    toggleOpenReprodConfirmationDialog()
   }
 
   return (
@@ -43,6 +48,12 @@ const App = () => {
         open={isOpenReprodDialog}
         onClose={toggleOpenReprodDialog}
         onSubmit={handleSubmitReprod}
+      />
+      <PEReprodConfirmationDialog
+        open={isOpenReprodConfirmationDialog}
+        onClose={toggleOpenReprodConfirmationDialog}
+        onConfirm={() => console.log('confirm')}
+        sections={sectionsFormValues}
       />
       <Footer />
     </Box>
