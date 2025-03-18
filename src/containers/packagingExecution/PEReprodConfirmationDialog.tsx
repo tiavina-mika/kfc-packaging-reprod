@@ -4,8 +4,13 @@ import {
     DialogContent,
     DialogActions,
     Typography,
+    styled,
 } from "@mui/material"
 import { COLORS } from "../../utils/constants";
+
+const StyledValue = styled("span")({
+    fontWeight: 600
+})
 
 const sx = {
     dialog: {
@@ -38,10 +43,21 @@ const sx = {
     },
 }
 
+// check if any section has realWeight = 0
+const hasSectionNoRealWeight = (sections: Record<string, any> = []) => {
+    return sections.some((section: Record<string, any>) => section.realWeight === 0)
+}
+
 const formatSections = (sections: Record<string, any> = []) => {
+    if (hasSectionNoRealWeight(sections)) {
+        const sectionWithNoRealWeight = sections.find((section: Record<string, any>) => section.realWeight === 0)
+        if (sectionWithNoRealWeight) {
+            return `de ${sectionWithNoRealWeight.sectionName}`
+        }
+    }
     return sections.map((section: Record<string, any>, index: number) => {
         const isLast = index === sections.length - 1;
-        return `${section.sectionName} (${section.realWeight} kg)${isLast ? '' : ' et '}`;
+        return `${section.realWeight} kg de ${section.sectionName} ${isLast ? '' : ' et '}`;
     }).join("")
 }
 
@@ -60,8 +76,11 @@ const PEReprodConfirmationDialog = ({
     return (
         <Dialog open={open} onClose={onClose} scroll="body" sx={sx.dialog}>
             <DialogContent sx={sx.dialogContent}>
-                <Typography>Avez-vous choisi de <b>{formatSections(sections)}</b>.</Typography>
-                <Typography>Confirmez-vous cette action?</Typography>
+                <Typography>
+                    {hasSectionNoRealWeight(sections) ? "Vous avez choisi de ne pas reproduire ": "Vous avez choisi de reproduire "}
+                    <StyledValue>{formatSections(sections)}</StyledValue>.
+                </Typography>
+                <Typography>Confirmez-vous cette action ?</Typography>
             </DialogContent>
             <DialogActions  sx={sx.dialogActions}>
                 <Button onClick={onClose} color="primary">
